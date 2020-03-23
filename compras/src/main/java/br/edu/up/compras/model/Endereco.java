@@ -16,22 +16,22 @@ public class Endereco {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "cep")
+	@Column(name = "cep", nullable = false)
 	private String cep;
 	
-	@Column(name = "logradouro")
+	@Column(name = "logradouro", nullable = false)
 	private String logradouro;
 	
 	@Column(name = "complemento")
 	private String complemento;
 	
-	@Column(name = "bairro")
+	@Column(name = "bairro", nullable = false)
 	private String bairro;
 	
 	@Column(name = "localidade")
 	private String localidade;
 	
-	@Column(name = "uf")
+	@Column(name = "uf", nullable = false)
 	private char uf;
 
 	public int getId() {

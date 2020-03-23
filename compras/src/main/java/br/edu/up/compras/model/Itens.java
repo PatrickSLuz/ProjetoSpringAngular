@@ -16,10 +16,10 @@ public class Itens {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "descricao_produto")
+	@Column(name = "descricao_produto", nullable = false)
 	private String descricaoProduto;
 	
-	@Column(name = "quantidade")
+	@Column(name = "quantidade", nullable = false)
 	private double quantidade;
 	
 	@Column(name = "preco_uni")

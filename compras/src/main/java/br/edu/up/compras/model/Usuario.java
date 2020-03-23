@@ -16,10 +16,10 @@ public class Usuario {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "nome")
+	@Column(name = "nome", nullable = false)
 	private String nome;
 	
-	@Column(name = "setor")
+	@Column(name = "setor", nullable = false)
 	private String setor;
 
 	public int getId() {
