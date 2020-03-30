@@ -1,2 +1,2 @@
-# Projeto_SpringBoot_Angular
+# ProjetoSpringAngular
 Projeto para o Setor de Compras de um Shopping
