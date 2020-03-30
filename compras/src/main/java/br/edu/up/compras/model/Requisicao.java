@@ -1,10 +1,12 @@
 package br.edu.up.compras.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +18,7 @@ public class Requisicao {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "solicitante")
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Usuario solicitante;
 	
 	@Column(name = "status")

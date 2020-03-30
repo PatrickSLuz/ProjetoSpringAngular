@@ -1,10 +1,12 @@
 package br.edu.up.compras.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +18,7 @@ public class RequisicaoItens {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "requisicao")
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Requisicao requisicao;
 	
 	@Column(name = "descricao_produto", nullable = false)
@@ -28,7 +30,7 @@ public class RequisicaoItens {
 	@Column(name = "preco_uni")
 	private double preco_uni;
 	
-	@Column(name = "cotacao_realizada", columnDefinition = "default 0")
+	@Column(name = "cotacao_realizada", columnDefinition = "int default 0")
 	private int cotacao_realizada; // flag: 0=Não Realizada e 1=Realizada
 
 	public int getId() {

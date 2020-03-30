@@ -1,10 +1,12 @@
 package br.edu.up.compras.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,10 +18,10 @@ public class Cotacao {
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "fornecedor")
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Fornecedor fornecedor;
 	
-	@Column(name = "requisicao_itens")
+	@ManyToOne(cascade = CascadeType.ALL)
 	private RequisicaoItens requisicao_itens;
 	
 	@Column(name = "vlr_total")
