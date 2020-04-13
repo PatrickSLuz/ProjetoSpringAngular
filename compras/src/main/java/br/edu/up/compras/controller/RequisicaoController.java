@@ -35,6 +35,13 @@ public class RequisicaoController {
 		return repository.getOne(id);
 	}
 	
+	@GetMapping("/status={status}")
+	public @ResponseBody Iterable<Requisicao> listAllByStatus(@PathVariable String status){
+		System.out.print("\nmethod listAllByStatus on RequisicaoController\nstatus = " + status + "\n");
+		Iterable<Requisicao> list = repository.getAllByStatus(status);
+		return list;
+	}
+		
 	@PostMapping
 	public Requisicao add(@RequestBody @Valid Requisicao entity) {
 		System.out.print("\nmethod add on RequisicaoController\nentity = " + entity + "\n");
