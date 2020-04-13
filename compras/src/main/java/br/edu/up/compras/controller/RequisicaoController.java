@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.up.compras.model.Requisicao;
-import br.edu.up.compras.model.repository.RequisicaoRepository;
+import br.edu.up.compras.repository.RequisicaoRepository;
 
 @RestController
 @RequestMapping("/requisicao")

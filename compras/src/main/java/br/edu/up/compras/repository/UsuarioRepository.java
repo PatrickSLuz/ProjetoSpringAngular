@@ -1,4 +1,4 @@
-package br.edu.up.compras.model.repository;
+package br.edu.up.compras.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.up.compras.model.Fornecedor;
-import br.edu.up.compras.model.repository.FornecedorRepository;
+import br.edu.up.compras.repository.FornecedorRepository;
 
 @RestController
 @RequestMapping("/fornecedor")

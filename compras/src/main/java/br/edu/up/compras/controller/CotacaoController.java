@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.up.compras.model.Cotacao;
-import br.edu.up.compras.model.repository.CotacaoRepository;
+import br.edu.up.compras.repository.CotacaoRepository;
 
 @RestController
 @RequestMapping("/cotacao")

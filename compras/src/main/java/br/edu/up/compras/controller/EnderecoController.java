@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.up.compras.model.Endereco;
-import br.edu.up.compras.model.repository.EnderecoRepository;
+import br.edu.up.compras.repository.EnderecoRepository;
 
 @RestController
 @RequestMapping("/endereco")
