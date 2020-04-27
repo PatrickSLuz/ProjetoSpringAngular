@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,8 +33,9 @@ public class Requisicao implements Serializable {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Usuario solicitante;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(name = "status")
-	private String status;
+	private StatusRequisicao status;
 	
 	@Column(name = "observacao")
 	private String observacao;
@@ -53,11 +56,11 @@ public class Requisicao implements Serializable {
 		this.solicitante = solicitante;
 	}
 
-	public String getStatus() {
+	public StatusRequisicao getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(StatusRequisicao status) {
 		this.status = status;
 	}
 
