@@ -14,6 +14,10 @@ import { RequisicaoListComponent } from './requisicao/view/requisicao-list/requi
 import { RequisicaoCreateComponent } from './requisicao/view/requisicao-create/requisicao-create.component';
 
 // Material Design
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,12 @@ import { RequisicaoCreateComponent } from './requisicao/view/requisicao-create/r
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    // Material Design
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
