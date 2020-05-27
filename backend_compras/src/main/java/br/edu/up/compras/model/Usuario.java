@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -22,22 +23,25 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@NotNull(message = "field.required")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
+	@Column(name = "id_usuario", nullable = false)
+	private Integer idUsuario;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "nome", nullable = false)
 	private String nome;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "setor", nullable = false)
 	private String setor;
 
-	public Integer getId() {
-		return id;
+	public Integer getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdUsuario(Integer idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public String getNome() {

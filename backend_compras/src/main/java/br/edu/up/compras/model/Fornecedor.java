@@ -8,8 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,58 +25,62 @@ public class Fornecedor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@NotNull(message = "field.required")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
+	@Column(name = "id_fornecedor", nullable = false)
+	private Integer idFornecedor;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "cpf_cnpj", nullable = false)
-	private String cpf_cnpj;
+	private String cpfCnpj;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "nome_razao", nullable = false)
-	private String nome_razao;
+	private String nomeRazao;
 	
 	@Column(name = "rg_inscricao")
-	private String rg_inscricao;
+	private String rgInscricao;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "email", nullable = false)
 	private String email;
 	
 	@Column(name = "telefone")
 	private String telefone;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 
-	public Integer getId() {
-		return id;
+	public Integer getIdFornecedor() {
+		return idFornecedor;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdFornecedor(Integer idFornecedor) {
+		this.idFornecedor = idFornecedor;
 	}
 
-	public String getCpf_cnpj() {
-		return cpf_cnpj;
+	public String getCpfCnpj() {
+		return cpfCnpj;
 	}
 
-	public void setCpf_cnpj(String cpf_cnpj) {
-		this.cpf_cnpj = cpf_cnpj;
+	public void setCpfCnpj(String cpfCnpj) {
+		this.cpfCnpj = cpfCnpj;
 	}
 
-	public String getNome_razao() {
-		return nome_razao;
+	public String getNomeRazao() {
+		return nomeRazao;
 	}
 
-	public void setNome_razao(String nome_razao) {
-		this.nome_razao = nome_razao;
+	public void setNomeRazao(String nomeRazao) {
+		this.nomeRazao = nomeRazao;
 	}
 
-	public String getRg_inscricao() {
-		return rg_inscricao;
+	public String getRgInscricao() {
+		return rgInscricao;
 	}
 
-	public void setRg_inscricao(String rg_inscricao) {
-		this.rg_inscricao = rg_inscricao;
+	public void setRgInscricao(String rgInscricao) {
+		this.rgInscricao = rgInscricao;
 	}
 
 	public String getEmail() {

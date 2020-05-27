@@ -2,14 +2,13 @@ package br.edu.up.compras.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -25,46 +24,53 @@ public class RequisicaoItens implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
+	@NotNull(message = "field.required")
+	@Column(name = "id_requisicao_itens", nullable = false)
+	private Integer idRequisicaoItens;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Requisicao requisicao;
+	@NotNull(message = "field.required")
+	@Column(name = "id_requisicao")
+	private Integer idRequisicao;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "descricao_produto", nullable = false)
-	private String descricao_produto;
+	private String descricaoProduto;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "quantidade", nullable = false)
 	private double quantidade;
 	
-	@Column(name = "preco_uni")
-	private double preco_uni;
+	@Column(name = "preco_uni", precision = 2, scale = 10)
+	private double precoUni;
 	
-	@Column(name = "cotacao_realizada", columnDefinition = "int default 0")
-	private int cotacao_realizada; // flag: 0=Não Realizada e 1=Realizada
+	// true = Realizada
+	// false = Não Realizada
+	@NotNull(message = "field.required")
+	@Column(name = "cotacao_realizada", columnDefinition = "tinyint default 0")
+	private Boolean cotacaoRealizada;
 
-	public Integer getId() {
-		return id;
+	public Integer getIdRequisicaoItens() {
+		return idRequisicaoItens;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdRequisicaoItens(Integer idRequisicaoItens) {
+		this.idRequisicaoItens = idRequisicaoItens;
 	}
 
-	public Requisicao getRequisicao() {
-		return requisicao;
+	public Integer getIdRequisicao() {
+		return idRequisicao;
 	}
 
-	public void setRequisicao(Requisicao requisicao) {
-		this.requisicao = requisicao;
+	public void setIdRequisicao(Integer idRequisicao) {
+		this.idRequisicao = idRequisicao;
 	}
 
-	public String getDescricao_produto() {
-		return descricao_produto;
+	public String getDescricaoProduto() {
+		return descricaoProduto;
 	}
 
-	public void setDescricao_produto(String descricao_produto) {
-		this.descricao_produto = descricao_produto;
+	public void setDescricaoProduto(String descricaoProduto) {
+		this.descricaoProduto = descricaoProduto;
 	}
 
 	public double getQuantidade() {
@@ -75,20 +81,20 @@ public class RequisicaoItens implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public double getPreco_uni() {
-		return preco_uni;
+	public double getPrecoUni() {
+		return precoUni;
 	}
 
-	public void setPreco_uni(double preco_uni) {
-		this.preco_uni = preco_uni;
+	public void setPrecoUni(double precoUni) {
+		this.precoUni = precoUni;
 	}
 
-	public int getCotacao_realizada() {
-		return cotacao_realizada;
+	public Boolean getCotacaoRealizada() {
+		return cotacaoRealizada;
 	}
 
-	public void setCotacao_realizada(int cotacao_realizada) {
-		this.cotacao_realizada = cotacao_realizada;
+	public void setCotacaoRealizada(Boolean cotacaoRealizada) {
+		this.cotacaoRealizada = cotacaoRealizada;
 	}
 	
 }

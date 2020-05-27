@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -22,34 +23,40 @@ public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@NotNull(message = "field.required")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
+	@Column(name = "id_endereco", nullable = false)
+	private Integer idEndereco;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "cep", nullable = false)
 	private String cep;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "logradouro", nullable = false)
 	private String logradouro;
 	
 	@Column(name = "complemento")
 	private String complemento;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "bairro", nullable = false)
 	private String bairro;
 	
-	@Column(name = "localidade")
+	@NotNull(message = "field.required")
+	@Column(name = "localidade", nullable = false)
 	private String localidade;
 	
+	@NotNull(message = "field.required")
 	@Column(name = "uf", nullable = false)
 	private char uf;
 
-	public Integer getId() {
-		return id;
+	public Integer getIdEndereco() {
+		return idEndereco;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdEndereco(Integer idEndereco) {
+		this.idEndereco = idEndereco;
 	}
 
 	public String getCep() {

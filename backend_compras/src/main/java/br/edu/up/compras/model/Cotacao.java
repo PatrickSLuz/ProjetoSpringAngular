@@ -5,11 +5,16 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,25 +29,27 @@ public class Cotacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@NotNull(message = "field.required")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
+	@Column(name = "id_cotacao", nullable = false)
+	private Integer idCotacao;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Fornecedor fornecedor;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	private RequisicaoItens requisicao_itens;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Requisicao requisicao;
 	
-	@Column(name = "vlr_total")
-	private double vlr_total;
+	@NotNull(message = "field.required")
+	@Column(name = "vlr_total", nullable = false, precision = 2, scale = 10)
+	private double vlrTotal;
 
-	public Integer getId() {
-		return id;
+	public Integer getIdCotacao() {
+		return idCotacao;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdCotacao(Integer id) {
+		this.idCotacao = id;
 	}
 
 	public Fornecedor getFornecedor() {
@@ -53,20 +60,20 @@ public class Cotacao implements Serializable {
 		this.fornecedor = fornecedor;
 	}
 
-	public RequisicaoItens getRequisicao_itens() {
-		return requisicao_itens;
+	public Requisicao getRequisicao() {
+		return requisicao;
 	}
 
-	public void setRequisicao_itens(RequisicaoItens requisicao_itens) {
-		this.requisicao_itens = requisicao_itens;
+	public void setRequisicao(Requisicao requisicao) {
+		this.requisicao = requisicao;
 	}
 
-	public double getVlr_total() {
-		return vlr_total;
+	public double getVlrTotal() {
+		return vlrTotal;
 	}
 
-	public void setVlr_total(double vlr_total) {
-		this.vlr_total = vlr_total;
+	public void setVlrTotal(double vlrTotal) {
+		this.vlrTotal = vlrTotal;
 	}
 	
 }

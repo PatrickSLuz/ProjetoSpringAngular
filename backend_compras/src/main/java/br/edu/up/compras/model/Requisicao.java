@@ -1,6 +1,8 @@
 package br.edu.up.compras.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,8 +12,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -27,25 +36,34 @@ public class Requisicao implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Integer id;
+	@Column(name = "id_requisicao", nullable = false)
+	private Integer idRequisicao;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private Usuario solicitante;
 	
+	@OneToMany(mappedBy = "idRequisicao")
+	private List<RequisicaoItens> itens;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data")
+	private Date data;
+	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "status")
+	@NotNull(message = "field.required")
+	@Column(name = "status", nullable = false)
 	private StatusRequisicao status;
 	
-	@Column(name = "observacao")
+	@NotNull(message = "field.required")
+	@Column(name = "observacao", nullable = false)
 	private String observacao;
 
-	public Integer getId() {
-		return id;
+	public Integer getIdRequisicao() {
+		return idRequisicao;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdRequisicao(Integer idRequisicao) {
+		this.idRequisicao = idRequisicao;
 	}
 
 	public Usuario getSolicitante() {
@@ -54,6 +72,22 @@ public class Requisicao implements Serializable {
 
 	public void setSolicitante(Usuario solicitante) {
 		this.solicitante = solicitante;
+	}
+
+	public List<RequisicaoItens> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<RequisicaoItens> itens) {
+		this.itens = itens;
+	}
+
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public StatusRequisicao getStatus() {
