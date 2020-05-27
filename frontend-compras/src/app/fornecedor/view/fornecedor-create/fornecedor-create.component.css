@@ -1,0 +1,15 @@
+.align-size {
+    text-align: center;
+}
+
+.align-size mat-form-field {
+    width: 55%;
+    justify-self: center;
+    align-self: center;
+}
+
+.align-h3 {
+    width: 55%;
+    align-self: center;
+    text-align: start;
+}
