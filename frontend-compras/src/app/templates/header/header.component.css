@@ -1,0 +1,9 @@
+.header {
+    display: flex;
+    align-items: center;
+    padding-left: 190px;
+}
+
+.header i {
+    padding-right: 6px;
+}

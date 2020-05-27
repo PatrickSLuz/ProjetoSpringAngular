@@ -3,19 +3,20 @@
     width: 170px;
 }
 
-.sidenav span {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin: 35px;
-}
-
 .sidenav a {
     color: white;
 }
 
 .sidenav i {
     padding-right: 10px;
+}
+
+.sidenav .compras {
+    font-size: 1.3rem;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .pad-all {
