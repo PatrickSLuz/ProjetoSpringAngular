@@ -36,6 +36,10 @@ public class Endereco implements Serializable {
 	@Column(name = "logradouro", nullable = false)
 	private String logradouro;
 	
+	@NotNull(message = "field.required")
+	@Column(name = "numero", nullable = false)
+	private String numero;
+	
 	@Column(name = "complemento")
 	private String complemento;
 	
@@ -73,6 +77,14 @@ public class Endereco implements Serializable {
 
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
+	}
+
+	public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
 	public String getComplemento() {
