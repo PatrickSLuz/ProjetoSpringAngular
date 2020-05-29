@@ -6,19 +6,19 @@
                     <a>COMPRAS</a>
                 </strong>
             </div>
-            <a mat-list-item routerLink="/home">
+            <a mat-list-item (click)="navigator(1)">
                 <i class="material-icons">home</i>Início
             </a>
-            <a mat-list-item routerLink="/requisicao-list">
+            <a mat-list-item (click)="navigator(2)">
                 <i class="material-icons">assignment</i>Requisição
             </a>
-            <a mat-list-item routerLink="/fornecedor-list">
+            <a mat-list-item (click)="navigator(3)">
                 <i class="material-icons">work</i>Fornecedor
             </a>
-            <a mat-list-item routerLink="/cotacao-list">
+            <a mat-list-item (click)="navigator(4)">
                 <i class="material-icons">monetization_on</i>Cotação
             </a>
-            <a mat-list-item routerLink="/user-list">
+            <a mat-list-item (click)="navigator(5)">
                 <i class="material-icons">account_circle</i>Usuário
             </a>
         </mat-nav-list>
