@@ -18,14 +18,14 @@ import { UserCreateComponent } from './user/view/user-create/user-create.compone
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'requisicao-list', component: RequisicaoListComponent },
-  { path: 'requisicao-create', component: RequisicaoCreateComponent },
-  { path: 'fornecedor-list', component: FornecedorListComponent },
-  { path: 'fornecedor-create', component: FornecedorCreateComponent },
-  { path: 'cotacao-list', component: CotacaoListComponent },
-  { path: 'cotacao-create', component: CotacaoCreateComponent },
-  { path: 'user-list', component: UserListComponent },
-  { path: 'user-create', component: UserCreateComponent }
+  { path: 'requisicao/list', component: RequisicaoListComponent },
+  { path: 'requisicao/create', component: RequisicaoCreateComponent },
+  { path: 'fornecedor/list', component: FornecedorListComponent },
+  { path: 'fornecedor/create', component: FornecedorCreateComponent },
+  { path: 'cotacao/list', component: CotacaoListComponent },
+  { path: 'cotacao/create', component: CotacaoCreateComponent },
+  { path: 'user/list', component: UserListComponent },
+  { path: 'user/create', component: UserCreateComponent }
 ];
 
 @NgModule({

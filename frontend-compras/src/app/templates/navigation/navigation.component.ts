@@ -22,19 +22,19 @@ export class NavigationComponent implements OnInit {
         break;
       case 2:
         this.buildTextHeader('Requisição', 'assignment');
-        this.router.navigate(['/requisicao-list']);
+        this.router.navigate(['/requisicao/list']);
         break;
       case 3:
         this.buildTextHeader('Fornecedor', 'work');
-        this.router.navigate(['/fornecedor-list']);
+        this.router.navigate(['/fornecedor/list']);
         break;
       case 4:
         this.buildTextHeader('Cotação', 'monetization_on');
-        this.router.navigate(['/cotacao-list']);
+        this.router.navigate(['/cotacao/list']);
         break;
       case 5:
         this.buildTextHeader('Usuário', 'account_circle');
-        this.router.navigate(['/user-list']);
+        this.router.navigate(['/user/list']);
         break;
     }
   }
