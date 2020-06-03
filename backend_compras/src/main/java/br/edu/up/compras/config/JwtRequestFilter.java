@@ -40,42 +40,49 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
-		final String requestTokenHeader = request.getHeader("Authorization");
-
-		String username = null;
-		String jwtToken = null;
-
-		// O token JWT está no formato "token do portador".
-		// Remova a palavra Bearer e obtenha apenas o Token
-		if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
-			jwtToken = requestTokenHeader.substring(7);
-			try {
-				username = jwtTokenUtil.getUsernameFromToken(jwtToken);
-			} catch (IllegalArgumentException e) {
-				System.out.println("Unable to get JWT Token");
-			} catch (ExpiredJwtException e) {
-				System.out.println("JWT Token has expired");
-			}
+		
+		if(request.getRequestURI().equals("/user") && request.getMethod().equals("POST")) {
+			// nao precisa de token para cadastrar usuario
+			logger.info("POST de /user");
 		} else {
-			logger.warn("JWT Token não começa com a String Bearer");
-		}
-		// Depois de obter o token, valide-o.
-		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
-			// se o token for válido, configure o Spring Security para definir manualmente a
-			// autenticação
-			if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
-				UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-						userDetails, null, userDetails.getAuthorities());
-				usernamePasswordAuthenticationToken
-						.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-				// Depois de definir a autenticação no contexto, especificamos
-				// que o usuário atual está autenticado. Então passa o
-				// Configurações de segurança da primavera com êxito.
-				SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+			final String requestTokenHeader = request.getHeader("Authorization");
+			
+			String username = null;
+			String jwtToken = null;
+
+			// O token JWT está no formato "token do portador".
+			// Remova a palavra Bearer e obtenha apenas o Token
+			if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
+				jwtToken = requestTokenHeader.substring(7);
+				try {
+					username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+				} catch (IllegalArgumentException e) {
+					System.out.println("Unable to get JWT Token");
+				} catch (ExpiredJwtException e) {
+					System.out.println("JWT Token has expired");
+				}
+			} else {
+				logger.warn("JWT Token não começa com a String Bearer");
 			}
+			// Depois de obter o token, valide-o.
+			if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+				UserDetails userDetails = this.jwtUserDetailsService.loadUserByUsername(username);
+				// se o token for válido, configure o Spring Security para definir manualmente a
+				// autenticação
+				if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
+					UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+							userDetails, null, userDetails.getAuthorities());
+					usernamePasswordAuthenticationToken
+							.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+					// Depois de definir a autenticação no contexto, especificamos
+					// que o usuário atual está autenticado. Então passa o
+					// Configurações de segurança da primavera com êxito.
+					SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+				}
+			}
+			chain.doFilter(request, response);
 		}
-		chain.doFilter(request, response);
+		
 	}
 
 }
