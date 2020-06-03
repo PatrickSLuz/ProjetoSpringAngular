@@ -1,0 +1,17 @@
+<h2>Faça o Login</h2>
+<div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label> Username</mat-label>
+            <input type="text" matInput value="" id="loginFormUser"
+                formControlName="username" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label> Senha</mat-label>
+            <input type="password" matInput value="" id="loginFormPassword" formControlName="password" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary"> Acessar</button>
+        <div *ngIf="error">{{error}}</div>
+    </form>
+</div>

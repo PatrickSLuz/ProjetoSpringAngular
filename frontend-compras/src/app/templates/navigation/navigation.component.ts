@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderService } from '../service/header.service';
+import { AuthenticationService } from 'src/app/auth/service/authentication.service';
 
 @Component({
   selector: 'app-navigation',
@@ -9,7 +10,7 @@ import { HeaderService } from '../service/header.service';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private router: Router, private headerService: HeaderService) { }
+  constructor(private router: Router, private headerService: HeaderService, private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +36,15 @@ export class NavigationComponent implements OnInit {
       case 5:
         this.buildTextHeader('Usuário', 'account_circle');
         this.router.navigate(['/user/list']);
+        break;
+      case 6:
+        this.buildTextHeader('Login', 'login');
+        this.router.navigate(['/login']);
+        break;
+      case 7:
+        this.authenticationService.logout();
+        this.buildTextHeader('Início', 'home');
+        this.router.navigate(['/home']);
         break;
     }
   }

@@ -41,9 +41,15 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
 		
-		if(request.getRequestURI().equals("/user") && request.getMethod().equals("POST")) {
-			// nao precisa de token para cadastrar usuario
-			logger.info("POST de /user");
+		logger.info("Tipo da Requisição: " + request.getMethod());
+		logger.info("EndPoint: " + request.getRequestURI());
+		
+		if(request.getMethod().equals("POST") && 
+		request.getRequestURI().equals("/user")// || 
+		//request.getRequestURI().equals("/authenticate"))
+		) {
+			// nao precisa de token
+			// para cadastrar usuario ou autenticar
 		} else {
 			final String requestTokenHeader = request.getHeader("Authorization");
 			

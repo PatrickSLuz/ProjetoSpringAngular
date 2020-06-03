@@ -4,7 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+// JWT
+import { JwtInterceptor } from './auth/service/jwt-interceptor';
+import { ErrorInterceptor } from './auth/service/error-interceptor';
 
 // Components
 import { HeaderComponent } from './templates/header/header.component';
@@ -18,6 +24,7 @@ import { CotacaoListComponent } from './cotacao/view/cotacao-list/cotacao-list.c
 import { CotacaoCreateComponent } from './cotacao/view/cotacao-create/cotacao-create.component';
 import { UserListComponent } from './user/view/user-list/user-list.component';
 import { UserCreateComponent } from './user/view/user-create/user-create.component';
+import { LoginComponent } from './auth/view/login/login.component';
 
 // Material Design
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -46,13 +53,16 @@ import { MatSortModule } from '@angular/material/sort';
     CotacaoListComponent,
     CotacaoCreateComponent,
     UserListComponent,
-    UserCreateComponent
+    UserCreateComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     // Material Design
     MatToolbarModule,
     MatSidenavModule,
@@ -66,7 +76,10 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatSortModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
