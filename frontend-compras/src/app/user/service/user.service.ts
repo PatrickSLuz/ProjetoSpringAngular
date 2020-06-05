@@ -2,27 +2,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserModel } from '../model/user-model';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  baseURL = "http://localhost:4200/api/usuario";
+  url = environment.baseUrl + "/usuario";
 
   constructor(private http: HttpClient) {
   }
 
-  // Headers
-  headerType = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-  }
-
   create(user: UserModel): Observable<UserModel> {
-    return this.http.post<UserModel>(this.baseURL, JSON.stringify(user), this.headerType);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<UserModel>(this.url, JSON.stringify(user), { headers });
   }
 
   getAllUsers(): Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(this.baseURL, this.headerType);
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<UserModel[]>(this.url, { headers });
   }
 }
