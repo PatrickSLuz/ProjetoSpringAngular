@@ -4,13 +4,13 @@
 
     <form class="form-column">
         <mat-form-field>
-            <input matInput placeholder="Nome" required>
+            <input matInput placeholder="Nome" [(ngModel)]="user.nome" name="nome" required>
         </mat-form-field>
         <mat-form-field>
-            <input matInput placeholder="Setor" required>
+            <input matInput placeholder="Setor" [(ngModel)]="user.setor" name="setor" required>
         </mat-form-field>
     </form>
 
-    <button mat-raised-button color="primary">Salvar</button>
-    <button mat-raised-button>Cancelar</button>
+    <button mat-raised-button color="primary" (click)="createUser()">Cadastrar</button>
+    <button mat-raised-button (click)="cancel()">Cancelar</button>
 </div>

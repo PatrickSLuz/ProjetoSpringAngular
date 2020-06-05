@@ -1,5 +1,5 @@
 export interface UserModel {
-    id: number
+    idUsuario?: number
     nome: string
     setor: string
 }
