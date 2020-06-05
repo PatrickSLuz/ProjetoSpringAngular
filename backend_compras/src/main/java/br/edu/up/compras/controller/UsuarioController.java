@@ -24,26 +24,26 @@ public class UsuarioController {
 
 	@GetMapping(produces = "application/json")
 	public @ResponseBody Iterable<Usuario> listAll(){
-		System.out.print("\nmethod listAll on UsuarioController\n");
+		System.out.print("method listAll on UsuarioController\n");
 		Iterable<Usuario> list = repository.findAll();
 		return list;
 	}
 	
 	@GetMapping("/id={id}")
 	public @ResponseBody Usuario getById(@PathVariable Integer id) {
-		System.out.print("\nmethod getById on UsuarioController\nid = " + id + "\n");
+		System.out.print("method getById on UsuarioController\nid = " + id + "\n");
 		return repository.getOne(id);
 	}
 	
 	@PostMapping
 	public Usuario add(@RequestBody @Valid Usuario entity) {
-		System.out.print("\nmethod add on UsuarioController\nentity = " + entity + "\n");
+		System.out.print("method add on UsuarioController\nentity = " + entity + "\n");
 		return repository.save(entity);
 	}
 	
 	@DeleteMapping
 	public Usuario delete(@PathVariable Integer id) {
-		System.out.print("\nmethod delete on UsuarioController\nid = " + id + "\n");
+		System.out.print("method delete on UsuarioController\nid = " + id + "\n");
 		Usuario entity = repository.getOne(id);
 		repository.delete(entity);
 		return entity;

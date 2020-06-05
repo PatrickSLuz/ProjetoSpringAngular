@@ -24,8 +24,7 @@ public class RequisicaoItens implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull(message = "field.required")
-	@Column(name = "id_requisicao_itens", nullable = false)
+	@Column(name = "id_requisicao_itens")
 	private Integer idRequisicaoItens;
 	
 	@NotNull(message = "field.required")

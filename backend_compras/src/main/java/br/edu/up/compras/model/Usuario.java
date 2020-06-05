@@ -23,9 +23,8 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotNull(message = "field.required")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario", nullable = false)
+	@Column(name = "id_usuario")
 	private Integer idUsuario;
 	
 	@NotNull(message = "field.required")

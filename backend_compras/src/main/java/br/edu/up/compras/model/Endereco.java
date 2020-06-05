@@ -23,9 +23,8 @@ public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotNull(message = "field.required")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_endereco", nullable = false)
+	@Column(name = "id_endereco")
 	private Integer idEndereco;
 	
 	@NotNull(message = "field.required")

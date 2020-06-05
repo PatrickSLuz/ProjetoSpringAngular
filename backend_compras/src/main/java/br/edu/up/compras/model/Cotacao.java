@@ -25,9 +25,8 @@ public class Cotacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotNull(message = "field.required")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_cotacao", nullable = false)
+	@Column(name = "id_cotacao")
 	private Integer idCotacao;
 	
 	@OneToOne(cascade = CascadeType.ALL)

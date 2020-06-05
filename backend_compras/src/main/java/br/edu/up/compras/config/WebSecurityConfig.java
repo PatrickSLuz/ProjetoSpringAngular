@@ -58,9 +58,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		// Nós não precisamos do CSRF neste exemplo
-		httpSecurity.csrf().disable()
+		httpSecurity.csrf().disable().authorizeRequests()
 				// não autentica o request deste caminho
-				.authorizeRequests().antMatchers("/authenticate").permitAll().
+				.antMatchers("/authenticate", "/usuario").permitAll().
 				// Define que todos os requests precisam de autenticação
 				anyRequest().authenticated().and().
 				// certifique-se de usar a sessão sem estado; sessão não será usada para

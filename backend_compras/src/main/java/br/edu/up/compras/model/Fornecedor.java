@@ -25,9 +25,8 @@ public class Fornecedor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@NotNull(message = "field.required")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_fornecedor", nullable = false)
+	@Column(name = "id_fornecedor")
 	private Integer idFornecedor;
 	
 	@NotNull(message = "field.required")

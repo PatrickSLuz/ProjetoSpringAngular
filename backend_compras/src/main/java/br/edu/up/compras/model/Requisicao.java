@@ -33,7 +33,7 @@ public class Requisicao implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_requisicao", nullable = false)
+	@Column(name = "id_requisicao")
 	private Integer idRequisicao;
 	
 	@OneToOne(cascade = CascadeType.ALL)
