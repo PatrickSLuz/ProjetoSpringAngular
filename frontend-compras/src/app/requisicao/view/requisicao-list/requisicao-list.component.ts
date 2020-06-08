@@ -1,30 +1,42 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { RequisicaoListDataSource, RequisicaoListItem } from './requisicao-list-datasource';
+import { RequisicaoListDataSource } from './requisicao-list-datasource';
+import { RequisicaoModel } from '../../model/requisicao-model';
+import { RequisicaoService } from '../../service/requisicao.service';
+import { RequisicaoItemModel } from '../../model/requisicao-item-model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-requisicao-list',
   templateUrl: './requisicao-list.component.html',
   styleUrls: ['./requisicao-list.component.css']
 })
-export class RequisicaoListComponent implements AfterViewInit, OnInit {
+export class RequisicaoListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<RequisicaoListItem>;
+  @ViewChild(MatTable) table: MatTable<RequisicaoModel>;
   dataSource: RequisicaoListDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['idRequisicao', 'itens', 'observacao', 'status'];
+
+  constructor(private requisicaoService: RequisicaoService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.dataSource = new RequisicaoListDataSource();
+    this.requisicaoService.getAllRequisicoes().subscribe(
+      requisicoes => {
+        this.dataSource = new RequisicaoListDataSource(requisicoes);
+        this.configPaginator();
+      }, error => console.log(error)
+    );
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+  configPaginator() {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+
+  openDialogItens(itens: RequisicaoItemModel[]): void {
+    console.log("Dialog Itens");
   }
 }

@@ -1,6 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { UserListDataSource } from './user-list-datasource';
 import { UserModel } from '../../model/user-model';
@@ -13,7 +12,6 @@ import { UserService } from '../../service/user.service';
 })
 export class UserListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<UserModel>;
   dataSource: UserListDataSource;
 
