@@ -32,6 +32,10 @@ public class Usuario implements Serializable {
 	private String nome;
 	
 	@NotNull(message = "field.required")
+	@Column(name = "email", nullable = false)
+	private String email;
+	
+	@NotNull(message = "field.required")
 	@Column(name = "setor", nullable = false)
 	private String setor;
 
@@ -49,6 +53,14 @@ public class Usuario implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getSetor() {

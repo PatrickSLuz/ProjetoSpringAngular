@@ -28,7 +28,7 @@ public class RequisicaoItens implements Serializable {
 	private Integer idRequisicaoItens;
 	
 	@NotNull(message = "field.required")
-	@Column(name = "id_requisicao")
+	@Column(name = "id_requisicao", nullable = false)
 	private Integer idRequisicao;
 	
 	@NotNull(message = "field.required")
