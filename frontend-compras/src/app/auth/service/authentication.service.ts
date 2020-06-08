@@ -22,6 +22,11 @@ export class AuthenticationService {
   public get currentUserValue(): Auth {
     return this.currentUserSubject.getValue();
   }
+
+  public get token(): string {
+    return this.currentUserValue.token;
+  }
+
   login(username: string, password: string) {
     return this.http.post<any>(this.url, { username, password })
       .pipe(map(user => {

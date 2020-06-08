@@ -4,17 +4,39 @@
 }
 
 .form-row {
-    width: 55%;
+    width: 60%;
     justify-self: center;
     align-self: center;
 }
 
 .align-size mat-form-field {
-    width: 55%;
+    width: 60%;
     justify-self: center;
     align-self: center;
 }
 
 .align-size {
     text-align: center;
+}
+
+.form-column button {
+    justify-self: center;
+    align-self: center;
+}
+
+.field-qnt {
+    margin-left: 25px;
+}
+
+.table-itens {
+    width: 60%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    justify-self: center;
+    align-self: center;
+}
+
+.table-itens table {
+    width: 100%;
+    text-align: start;
 }

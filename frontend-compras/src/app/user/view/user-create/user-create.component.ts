@@ -13,6 +13,7 @@ export class UserCreateComponent implements OnInit {
 
   user: UserModel = {
     nome: '',
+    email: '',
     setor: ''
   };
 
