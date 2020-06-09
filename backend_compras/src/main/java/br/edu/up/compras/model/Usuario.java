@@ -12,9 +12,9 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 
 	/**
@@ -26,18 +26,22 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
 	private Integer idUsuario;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "nome", nullable = false)
 	private String nome;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "email", nullable = false)
 	private String email;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "setor", nullable = false)
 	private String setor;
+
+	@NotNull(message = "field.required")
+	@Column(name = "login", nullable = false)
+	private String login;
 
 	public Integer getIdUsuario() {
 		return idUsuario;
@@ -70,5 +74,13 @@ public class Usuario implements Serializable {
 	public void setSetor(String setor) {
 		this.setor = setor;
 	}
-	
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 }

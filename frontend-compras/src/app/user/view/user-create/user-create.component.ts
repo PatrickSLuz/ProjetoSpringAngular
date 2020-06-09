@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserModel } from '../../model/user-model';
 
 @Component({
@@ -14,27 +13,24 @@ export class UserCreateComponent implements OnInit {
   user: UserModel = {
     nome: '',
     email: '',
-    setor: ''
+    setor: '',
+    login: '',
   };
 
-  constructor(private userService: UserService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  showMessage(msg: string): void {
-    this.snackBar.open(msg, "", {
-      duration: 4000,
-      horizontalPosition: "end",
-      verticalPosition: "top"
-    })
-  }
-
   createUser(): void {
-    this.userService.create(this.user).subscribe(() => {
-      this.showMessage("Usuário criado com Sucesso!");
-      this.cancel();
-    });
+    this.userService.create(this.user).subscribe(
+      () => {
+        this.userService.showMessage("Usuário criado com Sucesso!");
+        this.cancel();
+      },
+      (error) => {
+        console.log(error);
+      });
   }
 
   cancel(): void {

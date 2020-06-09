@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Auth } from '../model/auth';
 import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/user/service/user.service';
+import { UserModel } from 'src/app/user/model/user-model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,8 @@ export class AuthenticationService {
 
   url = environment.baseUrl + "/authenticate";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    private userService: UserService) {
     this.currentUserSubject = new BehaviorSubject<Auth>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -42,6 +45,7 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('username');
     this.currentUserSubject.next(null);
+    this.userService.currentUser = new UserModel;
   }
 
   //set name user new in storage

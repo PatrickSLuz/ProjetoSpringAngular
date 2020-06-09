@@ -3,4 +3,5 @@ export class UserModel {
     nome: string
     email: string
     setor: string
+    login: string
 }

@@ -12,6 +12,9 @@
         <mat-form-field>
             <input type="text" matInput placeholder="Setor" [(ngModel)]="user.setor" name="setor" required>
         </mat-form-field>
+        <mat-form-field>
+            <input type="text" matInput placeholder="Login" [(ngModel)]="user.login" name="login" required>
+        </mat-form-field>
     </form>
 
     <button mat-raised-button color="primary" (click)="createUser()">Cadastrar</button>

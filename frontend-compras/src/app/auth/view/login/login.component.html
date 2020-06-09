@@ -2,16 +2,14 @@
 <div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field>
-            <mat-label> Username</mat-label>
-            <input type="text" matInput value="" id="loginFormUser"
-                formControlName="username" required>
+            <mat-label> Login</mat-label>
+            <input type="text" matInput id="loginFormLogin" formControlName="login" required>
         </mat-form-field>
 
         <mat-form-field>
-            <mat-label> Senha</mat-label>
-            <input type="password" matInput value="" id="loginFormPassword" formControlName="password" required>
+            <mat-label> E-mail</mat-label>
+            <input type="email" matInput id="loginFormEmail" formControlName="email" required>
         </mat-form-field>
         <button mat-raised-button color="primary"> Acessar</button>
-        <div *ngIf="error">{{error}}</div>
     </form>
 </div>
