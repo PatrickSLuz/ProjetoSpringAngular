@@ -5,7 +5,7 @@ import { RequisicaoService } from '../../service/requisicao.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserModel } from 'src/app/user/model/user-model';
+import { UserService } from 'src/app/user/service/user.service';
 
 @Component({
   selector: 'app-requisicao-create',
@@ -23,7 +23,8 @@ export class RequisicaoCreateComponent implements OnInit {
 
   constructor(private requisicaoService: RequisicaoService,
     private router: Router,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private userService: UserService) { }
 
   ngOnInit(): void {
     this.requisicao = new RequisicaoModel();
@@ -39,13 +40,8 @@ export class RequisicaoCreateComponent implements OnInit {
   }
 
   createRequisicao(): void {
-    let user: UserModel = {
-      nome: 'Patrick',
-      email: 'patrick@email.com',
-      setor: 'Dev'
-    };
     if (this.itens.length > 0) {
-      this.requisicao.solicitante = user;
+      this.requisicao.solicitante = this.userService.currentUser;
       this.requisicao.itens = this.itens;
       this.requisicao.data = new Date;
       this.requisicao.status = StatusReq.CRIADO;

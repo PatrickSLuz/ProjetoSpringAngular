@@ -1,15 +1,18 @@
 <h2>Faça o Login</h2>
-<div>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field>
-            <mat-label> Login</mat-label>
-            <input type="text" matInput id="loginFormLogin" formControlName="login" required>
-        </mat-form-field>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-column">
+    <mat-form-field>
+        <mat-label> Login</mat-label>
+        <input type="text" matInput id="loginFormLogin" formControlName="login" required>
+    </mat-form-field>
 
-        <mat-form-field>
-            <mat-label> E-mail</mat-label>
-            <input type="email" matInput id="loginFormEmail" formControlName="email" required>
-        </mat-form-field>
-        <button mat-raised-button color="primary"> Acessar</button>
-    </form>
-</div>
+    <mat-form-field>
+        <mat-label> E-mail</mat-label>
+        <input type="email" matInput id="loginFormEmail" formControlName="email" required>
+    </mat-form-field>
+
+    <div class="buttons-in-row">
+        <button type="submit" mat-raised-button color="primary"> Acessar</button>
+        <button type="button" mat-raised-button routerLink="/user/create"> Cadastre-se</button>
+    </div>
+
+</form>
