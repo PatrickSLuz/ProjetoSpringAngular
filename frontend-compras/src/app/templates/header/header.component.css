@@ -7,3 +7,8 @@
 .header i {
     padding-right: 6px;
 }
+
+.username {
+    position: absolute;
+    right: 20px;
+}

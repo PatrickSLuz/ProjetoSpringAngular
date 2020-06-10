@@ -22,4 +22,36 @@ export class HeaderService {
     this._headerData.next(headerData);
   }
 
+  decideIconAndTitleByURL(url: string): void {
+    if (url.includes('requisicao')) {
+      this.headerData = {
+        title: 'Requisição',
+        icon: 'assignment'
+      }
+    }
+    else if (url.includes('fornecedor')) {
+      this.headerData = {
+        title: 'Fornecedor',
+        icon: 'work'
+      }
+    }
+    else if (url.includes('cotacao')) {
+      this.headerData = {
+        title: 'Cotação',
+        icon: 'monetization_on'
+      }
+    }
+    else if (url.includes('usuario')) {
+      this.headerData = {
+        title: 'Usuário',
+        icon: 'account_circle'
+      }
+    } else {
+      this.headerData = {
+        title: 'Início',
+        icon: 'home'
+      }
+    }
+  }
+
 }

@@ -27,6 +27,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.userService.showMessage("Dados incorretos. Verifique!!");
             }
 
+            if (erro.status === 500) {
+                this.userService.showMessage("Houve um erro. Tente novamente!!");
+            }
+
             const error = erro.error.message || erro.statusText;
             return throwError(error);
         }))

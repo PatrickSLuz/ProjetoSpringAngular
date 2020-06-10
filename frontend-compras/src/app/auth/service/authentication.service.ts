@@ -45,7 +45,7 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('username');
     this.currentUserSubject.next(null);
-    this.userService.currentUser = new UserModel;
+    this.userService.currentUser = null;
   }
 
   //set name user new in storage

@@ -68,16 +68,20 @@ export class RequisicaoCreateComponent implements OnInit {
     }
 
     if (this.itens.length > 0) {
-      this.requisicao.solicitante = this.userService.currentUser;
-      this.requisicao.itens = this.itens;
-      this.requisicao.data = new Date;
-      this.requisicao.status = StatusReq.CRIADO;
-      this.requisicaoService.create(this.requisicao).subscribe(
-        () => {
-          this.showMessage("Requisição Realizada com Sucesso!!");
-          this.cancel();
-        }, error => console.log(error));
-
+      if (this.userService.currentUser) {
+        this.requisicao.solicitante = this.userService.currentUser;
+        this.requisicao.itens = this.itens;
+        this.requisicao.data = new Date;
+        this.requisicao.status = StatusReq.CRIADO;
+        this.requisicaoService.create(this.requisicao).subscribe(
+          () => {
+            this.showMessage("Requisição Realizada com Sucesso!!");
+            this.cancel();
+          }, error => console.log(error));
+      } else {
+        this.showMessage("Não foi possível salvar a Requisição. Verifique seu Login!!");
+        return;
+      }
     } else {
       this.showMessage("Por Favor, insira algum Item!!");
     }

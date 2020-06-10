@@ -7,6 +7,7 @@ import { dataAuth } from 'src/dataAuth';
 import { UserService } from 'src/app/user/service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserModel } from 'src/app/user/model/user-model';
+import { HeaderService } from 'src/app/templates/service/header.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private headerService: HeaderService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -80,6 +82,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
+          this.headerService.decideIconAndTitleByURL(this.returnUrl);
           this.router.navigate([this.returnUrl]);
           this.authenticationService.setUserName(dataAuth.username);
         },
