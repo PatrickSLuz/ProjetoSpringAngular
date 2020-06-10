@@ -1,22 +1,26 @@
 <h2>Novo Usuário</h2>
 
-<form class="form-column">
+<form [formGroup]="userForm" (ngSubmit)="createUser()" class="form-column">
     <mat-form-field>
-        <input type="text" matInput placeholder="Nome" [(ngModel)]="user.nome" name="nome" required>
+        <input type="text" matInput placeholder="Nome" [(ngModel)]="user.nome" name="nome" formControlName="nome"
+            required>
     </mat-form-field>
     <mat-form-field>
-        <input type="email" matInput placeholder="E-mail" [(ngModel)]="user.email" name="email" required>
+        <input type="email" matInput placeholder="E-mail" [(ngModel)]="user.email" name="email" formControlName="email"
+            required>
     </mat-form-field>
     <mat-form-field>
-        <input type="text" matInput placeholder="Setor" [(ngModel)]="user.setor" name="setor" required>
+        <input type="text" matInput placeholder="Setor" [(ngModel)]="user.setor" name="setor" formControlName="setor"
+            required>
     </mat-form-field>
     <mat-form-field>
-        <input type="text" matInput placeholder="Login" [(ngModel)]="user.login" name="login" required>
+        <input type="text" matInput placeholder="Login" [(ngModel)]="user.login" name="login" formControlName="login"
+            required>
     </mat-form-field>
+
+    <div class="buttons-in-row">
+        <button type="submit" mat-raised-button color="primary">Cadastrar</button>
+        <button type="button" mat-raised-button (click)="cancel()">Cancelar</button>
+    </div>
 
 </form>
-
-<div class="buttons-in-row">
-    <button mat-raised-button color="primary" (click)="createUser()">Cadastrar</button>
-    <button mat-raised-button (click)="cancel()">Cancelar</button>
-</div>

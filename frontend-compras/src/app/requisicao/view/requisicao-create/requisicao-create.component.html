@@ -1,19 +1,19 @@
 <h2>Nova Requisição</h2>
 
-<form class="form-column">
+<form [formGroup]="itensForm" (ngSubmit)="addItem()" class="form-column" id="form-itens">
 
     <div class="form-row">
         <mat-form-field>
             <input type="text" matInput [(ngModel)]="item.descricaoProduto" name="descricao"
-                placeholder="Descrição do Produto">
+                placeholder="Descrição do Produto" formControlName="descricaoProduto" required>
         </mat-form-field>
         <mat-form-field class="field-qnt">
             <input type="number" min="1" max="1000" matInput [(ngModel)]="item.quantidade" name="quantidade"
-                placeholder="Quantidade">
+                placeholder="Quantidade" formControlName="quantidade" required>
         </mat-form-field>
     </div>
 
-    <button mat-raised-button color="primary" (click)="addItem()" class="btn-add-itens">Adicionar Item</button>
+    <button type="submit" mat-raised-button color="primary" class="btn-add-itens">Adicionar Item</button>
 
     <div class="mat-elevation-z4 table-itens">
         <table mat-table [dataSource]="dataSource">
@@ -34,13 +34,17 @@
         </table>
     </div>
 
-    <mat-form-field>
-        <input type="text" matInput [(ngModel)]="requisicao.observacao" name="observacao" placeholder="Observação"
-            required>
-    </mat-form-field>
 </form>
 
-<div class="buttons-in-row">
-    <button mat-raised-button color="primary" (click)="createRequisicao()">Salvar</button>
-    <button mat-raised-button (click)="cancel()">Cancelar</button>
-</div>
+<form [formGroup]="requisicaoForm" (ngSubmit)="createRequisicao()" class="form-column" id="form-requisicao">
+
+    <mat-form-field>
+        <input type="text" matInput [(ngModel)]="requisicao.observacao" name="observacao" placeholder="Observação"
+            formControlName="observacao" required>
+    </mat-form-field>
+
+    <div class="buttons-in-row">
+        <button type="submit" mat-raised-button color="primary">Salvar</button>
+        <button type="button" mat-raised-button (click)="cancel()">Cancelar</button>
+    </div>
+</form>

@@ -1,5 +1,5 @@
 <h2>Novo Fornecedor</h2>
-<form [formGroup]="fornecedorForm" class="form-column">
+<form [formGroup]="fornecedorForm" (ngSubmit)="createFornecedor()" class="form-column">
     <mat-form-field>
         <input matInput placeholder="CPF / CNPJ" [(ngModel)]="fornecedor.cpfCnpj" name="cpfCnpj"
             formControlName="cpfCnpj" required mask="CPF_CNPJ">
@@ -55,12 +55,13 @@
             formControlName="localidade" required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput minlength="2" maxlength="2" type="text" placeholder="Estado" [(ngModel)]="endereco.uf" name="uf" formControlName="uf"
-            required>
+        <input matInput placeholder="Estado" [(ngModel)]="endereco.uf" name="uf" formControlName="uf" required
+            mask="SS">
     </mat-form-field>
-</form>
 
-<div class="buttons-in-row">
-    <button mat-raised-button color="primary" (click)="createFornecedor()">Salvar</button>
-    <button mat-raised-button (click)="cancel()">Cancelar</button>
-</div>
+    <div class="buttons-in-row">
+        <button type="submit" mat-raised-button color="primary">Salvar</button>
+        <button type="button" mat-raised-button (click)="cancel()">Cancelar</button>
+    </div>
+
+</form>

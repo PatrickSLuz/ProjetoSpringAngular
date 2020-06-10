@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/user/service/user.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-requisicao-create',
@@ -13,6 +14,9 @@ import { UserService } from 'src/app/user/service/user.service';
   styleUrls: ['./requisicao-create.component.css']
 })
 export class RequisicaoCreateComponent implements OnInit {
+
+  itensForm: FormGroup;
+  requisicaoForm: FormGroup;
 
   requisicao: RequisicaoModel;
   item: RequisicaoItemModel;
@@ -24,11 +28,28 @@ export class RequisicaoCreateComponent implements OnInit {
   constructor(private requisicaoService: RequisicaoService,
     private router: Router,
     private snackBar: MatSnackBar,
-    private userService: UserService) { }
-
-  ngOnInit(): void {
+    private userService: UserService,
+    private formBuilder: FormBuilder) {
     this.requisicao = new RequisicaoModel();
     this.item = new RequisicaoItemModel();
+  }
+
+  ngOnInit(): void {
+    this.itensForm = this.formBuilder.group({
+      descricaoProduto: ['', Validators.required],
+      quantidade: ['', Validators.required],
+    });
+    this.requisicaoForm = this.formBuilder.group({
+      observacao: ['', Validators.required],
+    });
+  }
+
+  get formItensData() {
+    return this.itensForm.controls;
+  }
+
+  get formRequisicaoData() {
+    return this.requisicaoForm.controls;
   }
 
   showMessage(msg: string): void {
@@ -40,6 +61,12 @@ export class RequisicaoCreateComponent implements OnInit {
   }
 
   createRequisicao(): void {
+    // stop here if form is invalid
+    if (this.requisicaoForm.invalid) {
+      this.showMessage("Verifique os Campos e tente novamente!");
+      return;
+    }
+
     if (this.itens.length > 0) {
       this.requisicao.solicitante = this.userService.currentUser;
       this.requisicao.itens = this.itens;
@@ -57,16 +84,18 @@ export class RequisicaoCreateComponent implements OnInit {
   }
 
   addItem(): void {
-    if (this.item.descricaoProduto != null && this.item.quantidade != null) {
-      if (this.item.quantidade < 1) {
-        this.showMessage("Por Favor, insira uma Quantidade Válida!!");
-      } else {
-        this.itens.push(this.item);
-        this.item = new RequisicaoItemModel();
-        this.dataSource.data = this.itens;
-      }
+    // stop here if form is invalid
+    if (this.itensForm.invalid) {
+      this.showMessage("Verifique os Campos e tente novamente!");
+      return;
+    }
+
+    if (this.item.quantidade < 1) {
+      this.showMessage("Por Favor, insira uma Quantidade Válida!!");
     } else {
-      this.showMessage("Por Favor, preencha os campos para inserir um Item!!");
+      this.itens.push(this.item);
+      this.item = new RequisicaoItemModel();
+      this.dataSource.data = this.itens;
     }
   }
 
