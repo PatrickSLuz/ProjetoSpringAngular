@@ -4,6 +4,9 @@ import { MatTable } from '@angular/material/table';
 import { FornecedorListDataSource } from './fornecedor-list-datasource';
 import { FornecedorModel } from '../../model/fornecedor-model';
 import { FornecedorService } from '../../service/fornecedor.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEnderecoComponent } from '../dialog-endereco/dialog-endereco.component';
+import { EnderecoModel } from '../../model/endereco-model';
 
 @Component({
   selector: 'app-fornecedor-list',
@@ -17,7 +20,8 @@ export class FornecedorListComponent implements OnInit {
 
   displayedColumns = ['idFornecedor', 'cpfCnpj', 'nomeRazao', 'rgInscricao', 'email', 'telefone', 'endereco'];
 
-  constructor(private fornecedorService: FornecedorService) {
+  constructor(private fornecedorService: FornecedorService,
+    public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -30,5 +34,11 @@ export class FornecedorListComponent implements OnInit {
   configPaginator() {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+
+  dialogEndereco(endereco: EnderecoModel) {
+    this.dialog.open(DialogEnderecoComponent, {
+      data: { endereco: endereco },
+    }).afterClosed().subscribe();
   }
 }

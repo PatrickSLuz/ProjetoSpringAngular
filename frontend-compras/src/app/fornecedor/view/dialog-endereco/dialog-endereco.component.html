@@ -1,0 +1,32 @@
+<mat-dialog-content style="width: 250px;" class="dialog">
+
+    <h3>Endereço</h3>
+
+    <section>
+        <span>Cep: </span>
+        <label>{{endereco.cep}}</label>
+        <br>
+        <span>Rua: </span>
+        <label>{{endereco.logradouro}}</label>
+        <br>
+        <span>Numero: </span>
+        <label>{{endereco.numero}}</label>
+        <br>
+        <span>Complemento: </span>
+        <label>{{endereco.complemento}}</label>
+        <br>
+        <span>Bairro: </span>
+        <label>{{endereco.bairro}}</label>
+        <br>
+        <span>Cidade: </span>
+        <label>{{endereco.localidade}}</label>
+        <br>
+        <span>Estado: </span>
+        <label>{{endereco.uf}}</label>
+        <br>
+    </section>
+
+    <br>
+    <button mat-button (click)="hideDialog()">OK</button>
+
+</mat-dialog-content>

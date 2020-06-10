@@ -26,6 +26,7 @@ import { CotacaoCreateComponent } from './cotacao/view/cotacao-create/cotacao-cr
 import { UserListComponent } from './user/view/user-list/user-list.component';
 import { UserCreateComponent } from './user/view/user-create/user-create.component';
 import { LoginComponent } from './auth/view/login/login.component';
+import { DialogEnderecoComponent } from './fornecedor/view/dialog-endereco/dialog-endereco.component';
 
 // Material Design
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -58,6 +59,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     UserListComponent,
     UserCreateComponent,
     LoginComponent,
+    DialogEnderecoComponent,
   ],
   imports: [
     BrowserModule,
