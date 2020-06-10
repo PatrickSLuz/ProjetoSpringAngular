@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,7 @@ public class UsuarioController {
 		return repository.getOne(id);
 	}
 
+	@Transactional
 	@PostMapping("/login")
 	public ResponseEntity<Usuario> login(@RequestBody Usuario entity) {
 		System.out.print("method login on UsuarioController\n" + "login = " + entity.getLogin() + " - email = "

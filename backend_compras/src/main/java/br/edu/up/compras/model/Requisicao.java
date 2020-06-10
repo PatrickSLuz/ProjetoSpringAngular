@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -36,7 +35,7 @@ public class Requisicao implements Serializable {
 	@Column(name = "id_requisicao")
 	private Integer idRequisicao;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne()
 	private Usuario solicitante;
 	
 	@OneToMany(mappedBy = "idRequisicao")
