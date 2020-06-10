@@ -12,11 +12,11 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
-@Table(name="endereco")
+@Table(name = "endereco")
 public class Endereco implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -26,33 +26,33 @@ public class Endereco implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_endereco")
 	private Integer idEndereco;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "cep", nullable = false)
 	private String cep;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "logradouro", nullable = false)
 	private String logradouro;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "numero", nullable = false)
 	private String numero;
-	
+
 	@Column(name = "complemento")
 	private String complemento;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "bairro", nullable = false)
 	private String bairro;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "localidade", nullable = false)
 	private String localidade;
-	
+
 	@NotNull(message = "field.required")
-	@Column(name = "uf", nullable = false)
-	private char uf;
+	@Column(name = "uf", nullable = false, length = 2)
+	private String uf;
 
 	public Integer getIdEndereco() {
 		return idEndereco;
@@ -110,12 +110,12 @@ public class Endereco implements Serializable {
 		this.localidade = localidade;
 	}
 
-	public char getUf() {
+	public String getUf() {
 		return uf;
 	}
 
-	public void setUf(char uf) {
+	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
+
 }

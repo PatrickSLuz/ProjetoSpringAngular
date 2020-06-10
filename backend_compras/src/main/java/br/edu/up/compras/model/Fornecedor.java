@@ -14,9 +14,9 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
-@Table(name="fornecedor")
+@Table(name = "fornecedor")
 public class Fornecedor implements Serializable {
 
 	/**
@@ -28,25 +28,25 @@ public class Fornecedor implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_fornecedor")
 	private Integer idFornecedor;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "cpf_cnpj", nullable = false)
 	private String cpfCnpj;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "nome_razao", nullable = false)
 	private String nomeRazao;
-	
+
 	@Column(name = "rg_inscricao")
 	private String rgInscricao;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "email", nullable = false)
 	private String email;
-	
+
 	@Column(name = "telefone")
 	private String telefone;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 
@@ -105,5 +105,5 @@ public class Fornecedor implements Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
+
 }

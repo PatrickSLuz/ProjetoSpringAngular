@@ -1,19 +1,24 @@
 <h2>Novo Fornecedor</h2>
-<form class="form-column">
+<form [formGroup]="fornecedorForm" class="form-column">
     <mat-form-field>
-        <input matInput placeholder="CPF / CNPJ" required>
+        <input matInput placeholder="CPF / CNPJ" [(ngModel)]="fornecedor.cpfCnpj" name="cpfCnpj"
+            formControlName="cpfCnpj" required mask="CPF_CNPJ">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Nome / Razão Social" required>
+        <input matInput type="text" placeholder="Nome / Razão Social" [(ngModel)]="fornecedor.nomeRazao"
+            name="nomeRazao" formControlName="nomeRazao" required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="RG / Inscrição Estadual">
+        <input matInput placeholder="RG / Inscrição Estadual" [(ngModel)]="fornecedor.rgInscricao" name="rgInscricao"
+            formControlName="rgInscricao">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="E-mail" required>
+        <input matInput type="email" placeholder="E-mail" [(ngModel)]="fornecedor.email" name="email"
+            formControlName="email" required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Telefone">
+        <input matInput placeholder="Telefone" [(ngModel)]="fornecedor.telefone" name="telefone"
+            formControlName="telefone" mask="(00) 00000-0000||(00) 0000-0000">
     </mat-form-field>
 
     <div class="align-h3">
@@ -21,29 +26,41 @@
     </div>
 
     <mat-form-field>
-        <input matInput placeholder="CEP" required>
+        <input matInput placeholder="CEP" [(ngModel)]="endereco.cep" name="cep" formControlName="cep" required
+            mask="00.000-000">
+    </mat-form-field>
+
+    <!-- <div style="text-align: center">
+        <button type="button" mat-raised-button color="primary" (click)="searchCep()">Localizar CEP</button>
+    </div> -->
+
+    <mat-form-field>
+        <input matInput type="text" placeholder="Rua" [(ngModel)]="endereco.logradouro" name="logradouro"
+            formControlName="logradouro" required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Rua" required>
+        <input matInput type="text" placeholder="Número" [(ngModel)]="endereco.numero" name="numero"
+            formControlName="numero" required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Número" required>
+        <input matInput type="text" placeholder="Complemento" [(ngModel)]="endereco.complemento"
+            formControlName="complemento" name="complemento">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Complemento">
+        <input matInput type="text" placeholder="Bairro" [(ngModel)]="endereco.bairro" name="bairro"
+            formControlName="bairro" required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Bairro" required>
+        <input matInput type="text" placeholder="Cidade" [(ngModel)]="endereco.localidade" name="localidade"
+            formControlName="localidade" required>
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Cidade" required>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput placeholder="Estado" required>
+        <input matInput minlength="2" maxlength="2" type="text" placeholder="Estado" [(ngModel)]="endereco.uf" name="uf" formControlName="uf"
+            required>
     </mat-form-field>
 </form>
 
 <div class="buttons-in-row">
-    <button mat-raised-button color="primary">Salvar</button>
-    <button mat-raised-button>Cancelar</button>
+    <button mat-raised-button color="primary" (click)="createFornecedor()">Salvar</button>
+    <button mat-raised-button (click)="cancel()">Cancelar</button>
 </div>

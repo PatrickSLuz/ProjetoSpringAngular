@@ -29,7 +29,7 @@ export class UserCreateComponent implements OnInit {
         this.cancel();
       },
       (error) => {
-        console.log(error);
+        console.log("Erro create User:\n" + error);
       });
   }
 
