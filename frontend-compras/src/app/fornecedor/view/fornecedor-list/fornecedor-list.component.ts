@@ -1,29 +1,33 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { FornecedorListDataSource, FornecedorListItem } from './fornecedor-list-datasource';
+import { FornecedorListDataSource } from './fornecedor-list-datasource';
+import { FornecedorModel } from '../../model/fornecedor-model';
+import { FornecedorService } from '../../service/fornecedor.service';
 
 @Component({
   selector: 'app-fornecedor-list',
   templateUrl: './fornecedor-list.component.html',
   styleUrls: ['./fornecedor-list.component.css']
 })
-export class FornecedorListComponent implements AfterViewInit, OnInit {
+export class FornecedorListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<FornecedorListItem>;
+  @ViewChild(MatTable) table: MatTable<FornecedorModel>;
   dataSource: FornecedorListDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['idFornecedor', 'cpfCnpj', 'nomeRazao', 'rgInscricao', 'email', 'telefone', 'endereco'];
 
-  ngOnInit() {
-    this.dataSource = new FornecedorListDataSource();
+  constructor(private fornecedorService: FornecedorService) {
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
+  ngOnInit() {
+    this.fornecedorService.getAllFornecedores().subscribe(fornecedores => {
+      this.dataSource = new FornecedorListDataSource(fornecedores);
+      this.configPaginator();
+    }, error => console.log("Erro get Fornecedores:\n" + error));
+  }
+
+  configPaginator() {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
