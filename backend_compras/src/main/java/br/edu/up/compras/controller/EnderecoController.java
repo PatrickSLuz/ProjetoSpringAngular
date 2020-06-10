@@ -2,6 +2,8 @@ package br.edu.up.compras.controller;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,32 +22,34 @@ import br.edu.up.compras.repository.EnderecoRepository;
 @RequestMapping("/endereco")
 public class EnderecoController {
 
+	private static final Logger logger = LoggerFactory.getLogger(EnderecoController.class);
+
 	@Autowired
 	private EnderecoRepository repository;
 
 	@GetMapping(produces = "application/json")
 	public @ResponseBody Iterable<Endereco> listAll() {
-		System.out.print("\nmethod listAll on EnderecoController\n");
+		logger.info("List all Enderecos");
 		Iterable<Endereco> list = repository.findAll();
 		return list;
 	}
 
 	@GetMapping("/id={id}")
 	public @ResponseBody Endereco getById(@PathVariable Integer id) {
-		System.out.print("\nmethod getById on EnderecoController\nid = " + id + "\n");
+		logger.info("Get Endereco by id - " + id);
 		return repository.getOne(id);
 	}
 
 	@Transactional
 	@PostMapping
 	public Endereco add(@RequestBody @Valid Endereco entity) {
-		System.out.print("\nmethod add on EnderecoController\nentity = " + entity + "\n");
+		logger.info("Save Endereco");
 		return repository.save(entity);
 	}
 
 	@DeleteMapping
 	public Endereco delete(@PathVariable Integer id) {
-		System.out.print("\nmethod delete on EnderecoController\nid = " + id + "\n");
+		logger.info("Delete Endereco id - " + id);
 		Endereco entity = repository.getOne(id);
 		repository.delete(entity);
 		return entity;
