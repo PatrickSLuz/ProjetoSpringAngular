@@ -1,0 +1,20 @@
+<mat-dialog-content style="width: 250px;" class="dialog">
+
+    <h3>Solicitante</h3>
+
+    <section>
+        <span>Nome: </span>
+        <label>{{user.nome}}</label>
+        <br>
+        <span>Setor: </span>
+        <label>{{user.setor}}</label>
+        <br>
+        <span>email: </span>
+        <label>{{user.email}}</label>
+        <br>
+    </section>
+
+    <br>
+    <button mat-button (click)="hideDialog()">OK</button>
+
+</mat-dialog-content>

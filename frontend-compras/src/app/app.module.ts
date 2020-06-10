@@ -27,6 +27,8 @@ import { UserListComponent } from './user/view/user-list/user-list.component';
 import { UserCreateComponent } from './user/view/user-create/user-create.component';
 import { LoginComponent } from './auth/view/login/login.component';
 import { DialogEnderecoComponent } from './fornecedor/view/dialog-endereco/dialog-endereco.component';
+import { DialogItensComponent } from './requisicao/view/dialog-itens/dialog-itens.component';
+import { DialogSolicitanteComponent } from './requisicao/view/dialog-solicitante/dialog-solicitante.component';
 
 // Material Design
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -60,6 +62,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     UserCreateComponent,
     LoginComponent,
     DialogEnderecoComponent,
+    DialogItensComponent,
+    DialogSolicitanteComponent,
   ],
   imports: [
     BrowserModule,

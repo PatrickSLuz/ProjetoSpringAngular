@@ -10,10 +10,20 @@
       <td mat-cell *matCellDef="let row">{{row.idRequisicao}}</td>
     </ng-container>
 
+    <!-- Solicitante Column -->
+    <ng-container matColumnDef="solicitante">
+      <th mat-header-cell *matHeaderCellDef>Solicitante</th>
+      <td mat-cell *matCellDef="let row">
+        <i (click)="openDialogSolicitante(row.solicitante)" style="cursor: pointer;" class="material-icons">account_circle</i>
+      </td>
+    </ng-container>
+
     <!-- Itens Column -->
     <ng-container matColumnDef="itens">
       <th mat-header-cell *matHeaderCellDef>Itens</th>
-      <td mat-cell *matCellDef="let row" (click)="openDialogItens(row)">ver Itens</td>
+      <td mat-cell *matCellDef="let row">
+        <i (click)="openDialogItens(row.itens)" style="cursor: pointer;" class="material-icons">assignment</i>
+      </td>
     </ng-container>
 
     <!-- Observacao Column -->

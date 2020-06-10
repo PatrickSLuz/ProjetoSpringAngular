@@ -1,0 +1,15 @@
+.dialog {
+    width: 400px;
+}
+
+.table-itens {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    justify-self: center;
+    align-self: center;
+}
+
+.table-itens table {
+    width: 100%;
+    text-align: start;
+}

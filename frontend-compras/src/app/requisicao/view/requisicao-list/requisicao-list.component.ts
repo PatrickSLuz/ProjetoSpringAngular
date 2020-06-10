@@ -6,6 +6,9 @@ import { RequisicaoModel } from '../../model/requisicao-model';
 import { RequisicaoService } from '../../service/requisicao.service';
 import { RequisicaoItemModel } from '../../model/requisicao-item-model';
 import { MatDialog } from '@angular/material/dialog';
+import { UserModel } from 'src/app/user/model/user-model';
+import { DialogSolicitanteComponent } from '../dialog-solicitante/dialog-solicitante.component';
+import { DialogItensComponent } from '../dialog-itens/dialog-itens.component';
 
 @Component({
   selector: 'app-requisicao-list',
@@ -17,7 +20,7 @@ export class RequisicaoListComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<RequisicaoModel>;
   dataSource: RequisicaoListDataSource;
 
-  displayedColumns = ['idRequisicao', 'itens', 'observacao', 'status'];
+  displayedColumns = ['idRequisicao', 'solicitante', 'itens', 'observacao', 'status'];
 
   constructor(private requisicaoService: RequisicaoService,
     private dialog: MatDialog) { }
@@ -37,6 +40,14 @@ export class RequisicaoListComponent implements OnInit {
   }
 
   openDialogItens(itens: RequisicaoItemModel[]): void {
-    console.log("Dialog Itens");
+    this.dialog.open(DialogItensComponent, {
+      data: { itens: itens },
+    }).afterClosed().subscribe();
+  }
+
+  openDialogSolicitante(user: UserModel): void {
+    this.dialog.open(DialogSolicitanteComponent, {
+      data: { user: user },
+    }).afterClosed().subscribe();
   }
 }
