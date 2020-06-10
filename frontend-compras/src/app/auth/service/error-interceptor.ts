@@ -4,12 +4,12 @@ import { Observable, throwError } from 'rxjs';
 
 import { AuthenticationService } from '../service/authentication.service';
 import { catchError } from 'rxjs/operators';
-import { UserService } from 'src/app/user/service/user.service';
+import { MessageService } from 'src/app/service/message.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(private authenticationService: AuthenticationService,
-        private userService: UserService) { }
+        private msgService: MessageService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(erro => {
@@ -20,15 +20,15 @@ export class ErrorInterceptor implements HttpInterceptor {
             }
 
             if (erro.status === 409) {
-                this.userService.showMessage("Login ou E-mail já cadastrados. Verifique!!");
+                this.msgService.showMessage("Login ou E-mail já cadastrados. Verifique!!");
             }
 
             if (erro.status === 400) {
-                this.userService.showMessage("Dados incorretos. Verifique!!");
+                this.msgService.showMessage("Dados incorretos. Verifique!!");
             }
 
             if (erro.status === 500) {
-                this.userService.showMessage("Houve um erro. Tente novamente!!");
+                this.msgService.showMessage("Houve um erro. Tente novamente!!");
             }
 
             const error = erro.error.message || erro.statusText;

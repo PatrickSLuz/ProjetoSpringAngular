@@ -41,7 +41,7 @@ export class HeaderService {
         icon: 'monetization_on'
       }
     }
-    else if (url.includes('usuario')) {
+    else if (url.includes('user')) {
       this.headerData = {
         title: 'Usuário',
         icon: 'account_circle'

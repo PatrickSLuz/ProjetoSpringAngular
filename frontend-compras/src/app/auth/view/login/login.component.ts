@@ -5,9 +5,9 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../../service/authentication.service';
 import { dataAuth } from 'src/dataAuth';
 import { UserService } from 'src/app/user/service/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserModel } from 'src/app/user/model/user-model';
 import { HeaderService } from 'src/app/templates/service/header.service';
+import { MessageService } from 'src/app/service/message.service';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +26,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private snackBar: MatSnackBar,
-    private headerService: HeaderService
-  ) {
+    private headerService: HeaderService,
+    private msgService: MessageService) {
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['']);
@@ -55,7 +54,7 @@ export class LoginComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
-      this.showMessage("Verifique os Campos e tente novamente!");
+      this.msgService.showMessage("Verifique os Campos e tente novamente!");
       return;
     }
 
@@ -90,14 +89,6 @@ export class LoginComponent implements OnInit {
           console.log(error);
           this.loading = false;
         });
-  }
-
-  showMessage(msg: string): void {
-    this.snackBar.open(msg, "", {
-      duration: 4000,
-      horizontalPosition: "end",
-      verticalPosition: "top"
-    })
   }
 
 }

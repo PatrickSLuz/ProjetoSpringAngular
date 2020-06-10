@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { RequisicaoItemModel } from '../../model/requisicao-item-model';
 import { RequisicaoModel, StatusReq } from '../../model/requisicao-model';
 import { RequisicaoService } from '../../service/requisicao.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/user/service/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'src/app/service/message.service';
 
 @Component({
   selector: 'app-requisicao-create',
@@ -27,7 +27,7 @@ export class RequisicaoCreateComponent implements OnInit {
 
   constructor(private requisicaoService: RequisicaoService,
     private router: Router,
-    private snackBar: MatSnackBar,
+    private msgService: MessageService,
     private userService: UserService,
     private formBuilder: FormBuilder) {
     this.requisicao = new RequisicaoModel();
@@ -52,18 +52,10 @@ export class RequisicaoCreateComponent implements OnInit {
     return this.requisicaoForm.controls;
   }
 
-  showMessage(msg: string): void {
-    this.snackBar.open(msg, "", {
-      duration: 4000,
-      horizontalPosition: "end",
-      verticalPosition: "top"
-    })
-  }
-
   createRequisicao(): void {
     // stop here if form is invalid
     if (this.requisicaoForm.invalid) {
-      this.showMessage("Verifique os Campos e tente novamente!");
+      this.msgService.showMessage("Verifique os Campos e tente novamente!");
       return;
     }
 
@@ -75,27 +67,27 @@ export class RequisicaoCreateComponent implements OnInit {
         this.requisicao.status = StatusReq.CRIADO;
         this.requisicaoService.create(this.requisicao).subscribe(
           () => {
-            this.showMessage("Requisição Realizada com Sucesso!!");
+            this.msgService.showMessage("Requisição Realizada com Sucesso!!");
             this.cancel();
           }, error => console.log(error));
       } else {
-        this.showMessage("Não foi possível salvar a Requisição. Verifique seu Login!!");
+        this.msgService.showMessage("Não foi possível salvar a Requisição. Verifique seu Login!!");
         return;
       }
     } else {
-      this.showMessage("Por Favor, insira algum Item!!");
+      this.msgService.showMessage("Por Favor, insira algum Item!!");
     }
   }
 
   addItem(): void {
     // stop here if form is invalid
     if (this.itensForm.invalid) {
-      this.showMessage("Verifique os Campos e tente novamente!");
+      this.msgService.showMessage("Verifique os Campos e tente novamente!");
       return;
     }
 
     if (this.item.quantidade < 1) {
-      this.showMessage("Por Favor, insira uma Quantidade Válida!!");
+      this.msgService.showMessage("Por Favor, insira uma Quantidade Válida!!");
     } else {
       this.itens.push(this.item);
       this.item = new RequisicaoItemModel();

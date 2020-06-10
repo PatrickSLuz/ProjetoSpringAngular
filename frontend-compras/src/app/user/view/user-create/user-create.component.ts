@@ -3,6 +3,7 @@ import { UserService } from '../../service/user.service';
 import { Router } from '@angular/router';
 import { UserModel } from '../../model/user-model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MessageService } from 'src/app/service/message.service';
 
 @Component({
   selector: 'app-user-create',
@@ -16,7 +17,8 @@ export class UserCreateComponent implements OnInit {
 
   constructor(private userService: UserService,
     private router: Router,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private msgService: MessageService) {
     this.user = new UserModel();
   }
 
@@ -36,13 +38,13 @@ export class UserCreateComponent implements OnInit {
   createUser(): void {
     // stop here if form is invalid
     if (this.userForm.invalid) {
-      this.userService.showMessage("Verifique os Campos e tente novamente!");
+      this.msgService.showMessage("Verifique os Campos e tente novamente!");
       return;
     }
 
     this.userService.create(this.user).subscribe(
       () => {
-        this.userService.showMessage("Usuário criado com Sucesso!");
+        this.msgService.showMessage("Usuário criado com Sucesso!");
         this.cancel();
       },
       (error) => {

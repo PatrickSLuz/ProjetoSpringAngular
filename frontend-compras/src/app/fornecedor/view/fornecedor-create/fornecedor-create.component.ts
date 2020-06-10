@@ -4,8 +4,8 @@ import { EnderecoModel } from '../../model/endereco-model';
 import { FornecedorModel } from '../../model/fornecedor-model';
 import { FornecedorService } from '../../service/fornecedor.service';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'src/app/service/message.service';
 
 @Component({
   selector: 'app-fornecedor-create',
@@ -22,7 +22,7 @@ export class FornecedorCreateComponent implements OnInit {
     private cepService: CepService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar) {
+    private msgService: MessageService) {
     this.fornecedor = new FornecedorModel();
     this.endereco = new EnderecoModel();
   }
@@ -51,14 +51,14 @@ export class FornecedorCreateComponent implements OnInit {
   createFornecedor(): void {
     // stop here if form is invalid
     if (this.fornecedorForm.invalid) {
-      this.showMessage("Verifique os Campos e tente novamente!");
+      this.msgService.showMessage("Verifique os Campos e tente novamente!");
       return;
     }
 
     this.fornecedor.endereco = this.endereco;
     this.fornecedorService.create(this.fornecedor).subscribe(
       () => {
-        this.showMessage("Fornecedor criado com Sucesso!!");
+        this.msgService.showMessage("Fornecedor criado com Sucesso!!");
         this.cancel();
       },
       (error) => {
@@ -80,14 +80,6 @@ export class FornecedorCreateComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/fornecedor/list']);
-  }
-
-  showMessage(msg: string): void {
-    this.snackBar.open(msg, "", {
-      duration: 4000,
-      horizontalPosition: "end",
-      verticalPosition: "top"
-    })
   }
 
 }

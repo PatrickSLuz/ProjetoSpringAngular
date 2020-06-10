@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
 import { Auth } from '../model/auth';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/user/service/user.service';
-import { UserModel } from 'src/app/user/model/user-model';
 
 @Injectable({
   providedIn: 'root'

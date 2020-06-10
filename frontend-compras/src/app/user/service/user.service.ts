@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserModel } from '../model/user-model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +13,7 @@ export class UserService {
 
   url = environment.baseUrl + "/usuario";
 
-  constructor(private http: HttpClient,
-    private snackBar: MatSnackBar) {
-  }
+  constructor(private http: HttpClient) { }
 
   create(user: UserModel): Observable<UserModel> {
     let headers = new HttpHeaders({
@@ -44,11 +41,4 @@ export class UserService {
     return this.http.post<UserModel>(endpoint, JSON.stringify(user), { headers });
   }
 
-  showMessage(msg: string): void {
-    this.snackBar.open(msg, "", {
-      duration: 4000,
-      horizontalPosition: "end",
-      verticalPosition: "top"
-    })
-  }
 }
