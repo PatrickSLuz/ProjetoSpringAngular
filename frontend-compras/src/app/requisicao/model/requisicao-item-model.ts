@@ -1,8 +1,9 @@
 export class RequisicaoItemModel {
-    idRequisicaoItem: number
+    idRequisicaoItem?: number
     idRequisicao: number
     descricaoProduto: string
     quantidade: number
-    precoUni: number
+    precoUni?: number
+    subTotal?: number
     cotacaoRealizada: boolean
 }
