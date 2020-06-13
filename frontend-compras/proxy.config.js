@@ -1,12 +1,12 @@
 const proxy = [
   {
-    context: '/api',
+    context: '/backend',
     target: 'http://localhost:8080',
-    pathRewrite: { '^/api': '' }
+    pathRewrite: { '^/backend': '' }
   },
   {
     context: '/api',
-    target: 'https://viacep.com.br/ws',
+    target: 'https://viacep.com.br',
     pathRewrite: { '^/api': '' }
   }
 ];

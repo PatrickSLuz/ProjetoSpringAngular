@@ -68,6 +68,11 @@ export class FornecedorCreateComponent implements OnInit {
   }
 
   searchCep(): void {
+    if (this.endereco.cep === undefined || this.endereco.cep.length != 8) {
+      this.msgService.showMessage("Preencha o campo CEP!")
+      return;
+    }
+
     this.cepService.searchCep(this.endereco.cep).subscribe(
       (endereco) => {
         this.endereco = endereco;

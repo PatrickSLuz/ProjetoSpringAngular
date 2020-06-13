@@ -7,3 +7,17 @@
 .radio-button {
     margin: 5px;
 }
+
+.filter {
+    display: flex;
+    flex-direction: row;
+}
+
+.filter h3 {
+    width: 20%;
+    margin-top: 16px;
+}
+
+.filter mat-form-field {
+    width: 50%;
+}

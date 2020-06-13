@@ -11,7 +11,8 @@ export class CepService {
   constructor(private http: HttpClient) { }
 
   searchCep(cep: string): Observable<EnderecoModel> {
-    let url = "https://viacep.com.br/ws/" + cep + "/json/";
-    return this.http.get<EnderecoModel>(url);
+    let url = "http://localhost:4200/api/ws/" + cep + "/json/";
+    //let url = "https://viacep.com.br/ws/" + cep + "/json/";
+    return this.http.get<EnderecoModel>(url, { headers: null, withCredentials: false });
   }
 }
