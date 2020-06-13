@@ -12,9 +12,9 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
-@Table(name="requisicao_itens")
+@Table(name = "requisicao_itens")
 public class RequisicaoItens implements Serializable {
 
 	/**
@@ -26,27 +26,21 @@ public class RequisicaoItens implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_requisicao_itens")
 	private Integer idRequisicaoItens;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "id_requisicao", nullable = false)
 	private Integer idRequisicao;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "descricao_produto", nullable = false)
 	private String descricaoProduto;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "quantidade", nullable = false)
 	private double quantidade;
-	
+
 	@Column(name = "preco_uni", precision = 2, scale = 10)
 	private double precoUni;
-	
-	// true = Realizada
-	// false = Não Realizada
-	@NotNull(message = "field.required")
-	@Column(name = "cotacao_realizada", columnDefinition = "tinyint default 0")
-	private Boolean cotacaoRealizada;
 
 	public Integer getIdRequisicaoItens() {
 		return idRequisicaoItens;
@@ -88,12 +82,4 @@ public class RequisicaoItens implements Serializable {
 		this.precoUni = precoUni;
 	}
 
-	public Boolean getCotacaoRealizada() {
-		return cotacaoRealizada;
-	}
-
-	public void setCotacaoRealizada(Boolean cotacaoRealizada) {
-		this.cotacaoRealizada = cotacaoRealizada;
-	}
-	
 }

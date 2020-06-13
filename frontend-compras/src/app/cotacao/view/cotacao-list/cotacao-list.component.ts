@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable } from '@angular/material/table';
-import { CotacaoListDataSource, CotacaoListItem } from './cotacao-list-datasource';
+import { CotacaoListDataSource } from './cotacao-list-datasource';
 import { CotacaoService } from '../../service/cotacao.service';
+import { CotacaoModel } from '../../model/cotacao-model';
 
 @Component({
   selector: 'app-cotacao-list',
@@ -11,7 +12,7 @@ import { CotacaoService } from '../../service/cotacao.service';
 })
 export class CotacaoListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatTable) table: MatTable<CotacaoListItem>;
+  @ViewChild(MatTable) table: MatTable<CotacaoModel>;
   dataSource: CotacaoListDataSource;
 
   displayedColumns = ['id', 'name'];

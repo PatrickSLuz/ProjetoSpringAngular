@@ -8,12 +8,13 @@ export class RequisicaoModel {
     data: Date
     status: StatusReq
     observacao: string
+    cotacaoRealizada: boolean
 }
 
 export enum StatusReq {
     CRIADO,
     RECUSADO,
-    EM_ANDAMENTO,
+    CANCELADO,
     EM_COTACAO,
     FINALIZADO
 }

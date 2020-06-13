@@ -5,5 +5,4 @@ export class RequisicaoItemModel {
     quantidade: number
     precoUni?: number
     subTotal?: number
-    cotacaoRealizada: boolean
 }

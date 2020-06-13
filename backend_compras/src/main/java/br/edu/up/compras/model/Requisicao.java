@@ -20,9 +20,9 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
-@Table(name="requisicao")
+@Table(name = "requisicao")
 public class Requisicao implements Serializable {
 
 	/**
@@ -34,25 +34,31 @@ public class Requisicao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_requisicao")
 	private Integer idRequisicao;
-	
+
 	@OneToOne()
 	private Usuario solicitante;
-	
+
 	@OneToMany(mappedBy = "idRequisicao")
 	private List<RequisicaoItens> itens;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data")
 	private Date data;
-	
+
 	@Enumerated(EnumType.STRING)
 	@NotNull(message = "field.required")
 	@Column(name = "status", nullable = false)
 	private StatusRequisicao status;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "observacao", nullable = false)
 	private String observacao;
+
+	// true = Realizada
+	// false = Não Realizada
+	@NotNull(message = "field.required")
+	@Column(name = "cotacao_realizada", columnDefinition = "tinyint default 0")
+	private Boolean cotacaoRealizada;
 
 	public Integer getIdRequisicao() {
 		return idRequisicao;
@@ -101,5 +107,13 @@ public class Requisicao implements Serializable {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	
+
+	public Boolean getCotacaoRealizada() {
+		return cotacaoRealizada;
+	}
+
+	public void setCotacaoRealizada(Boolean cotacaoRealizada) {
+		this.cotacaoRealizada = cotacaoRealizada;
+	}
+
 }

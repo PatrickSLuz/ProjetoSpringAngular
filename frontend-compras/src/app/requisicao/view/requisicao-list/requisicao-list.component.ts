@@ -2,13 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable } from '@angular/material/table';
 import { RequisicaoListDataSource } from './requisicao-list-datasource';
-import { RequisicaoModel } from '../../model/requisicao-model';
+import { RequisicaoModel, StatusReq } from '../../model/requisicao-model';
 import { RequisicaoService } from '../../service/requisicao.service';
 import { RequisicaoItemModel } from '../../model/requisicao-item-model';
 import { MatDialog } from '@angular/material/dialog';
 import { UserModel } from 'src/app/user/model/user-model';
 import { DialogSolicitanteComponent } from '../dialog-solicitante/dialog-solicitante.component';
 import { DialogItensComponent } from '../dialog-itens/dialog-itens.component';
+import { UserService } from 'src/app/user/service/user.service';
 
 @Component({
   selector: 'app-requisicao-list',
@@ -20,23 +21,39 @@ export class RequisicaoListComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<RequisicaoModel>;
   dataSource: RequisicaoListDataSource;
 
-  displayedColumns = ['idRequisicao', 'solicitante', 'itens', 'observacao', 'status'];
+  displayedColumns = ['idRequisicao', 'solicitante', 'itens', 'observacao', 'status', 'cancelar'];
 
   constructor(private requisicaoService: RequisicaoService,
+    private userService: UserService,
     private dialog: MatDialog) { }
 
   ngOnInit() {
     this.requisicaoService.getAllRequisicoes().subscribe(
       requisicoes => {
         this.dataSource = new RequisicaoListDataSource(requisicoes);
-        this.configPaginator();
+        this.dataSource.paginator = this.paginator;
+        this.table.dataSource = this.dataSource;
       }, error => console.log(error)
     );
   }
 
-  configPaginator() {
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  validarCurrentUser(user: UserModel): boolean {
+    if (this.userService.currentUser) {
+      if (user.idUsuario == this.userService.currentUser.idUsuario) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  cancelRequisicao(requisicao: RequisicaoModel): void {
+    requisicao.status = StatusReq.CANCELADO;
+    this.requisicaoService.updateByStatus(requisicao).subscribe(
+      () => this.ngOnInit(),
+      (error) => {
+        console.log("Error to update Requisicao:\n" + error)
+      }
+    );
   }
 
   openDialogItens(itens: RequisicaoItemModel[]): void {

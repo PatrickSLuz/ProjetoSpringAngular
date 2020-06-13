@@ -57,15 +57,25 @@ public class RequisicaoController {
 	public Requisicao add(@RequestBody @Valid Requisicao entity) {
 		logger.info("Save Requisicao");
 		Requisicao requisicao = repository.save(entity);
+		requisicao.setCotacaoRealizada(false);
 		RequisicaoItens reqItem;
 		for (RequisicaoItens item : requisicao.getItens()) {
 			reqItem = new RequisicaoItens();
 			reqItem.setIdRequisicao(requisicao.getIdRequisicao());
 			reqItem.setDescricaoProduto(item.getDescricaoProduto());
 			reqItem.setQuantidade(item.getQuantidade());
-			reqItem.setCotacaoRealizada(false);
 			itensRepository.save(reqItem);
 		}
+		return requisicao;
+	}
+
+	@Transactional
+	@PostMapping("/status")
+	public Requisicao updateByStatus(@RequestBody @Valid Requisicao entity) {
+		logger.info("Update Requisicao By Statuss");
+		Requisicao requisicao = repository.getOne(entity.getIdRequisicao());
+		requisicao.setStatus(entity.getStatus());
+		repository.save(requisicao);
 		return requisicao;
 	}
 

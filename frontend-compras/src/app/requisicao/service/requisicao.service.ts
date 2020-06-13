@@ -32,4 +32,13 @@ export class RequisicaoService {
 
     return this.http.get<RequisicaoModel[]>(this.url, { headers });
   }
+
+  updateByStatus(requisicao: RequisicaoModel): Observable<RequisicaoModel> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.authService.token
+    });
+
+    return this.http.post<RequisicaoModel>(this.url + '/status', JSON.stringify(requisicao), { headers });
+  }
 }
