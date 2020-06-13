@@ -47,7 +47,7 @@ public class FornecedorController {
 		return repository.save(entity);
 	}
 
-	@DeleteMapping
+	@DeleteMapping("/id={id}")
 	public Fornecedor delete(@PathVariable Integer id) {
 		logger.info("Delete Fornecedor id - " + id);
 		Fornecedor entity = repository.getOne(id);

@@ -3,7 +3,7 @@ import { CepService } from '../../service/cep.service';
 import { EnderecoModel } from '../../model/endereco-model';
 import { FornecedorModel } from '../../model/fornecedor-model';
 import { FornecedorService } from '../../service/fornecedor.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'src/app/service/message.service';
 
@@ -14,17 +14,41 @@ import { MessageService } from 'src/app/service/message.service';
 })
 export class FornecedorCreateComponent implements OnInit {
 
+  idFornecedor: number;
+
   fornecedorForm: FormGroup;
   fornecedor: FornecedorModel;
   endereco: EnderecoModel;
+
+  titleScreen: string;
+  txtButton: string;
 
   constructor(private fornecedorService: FornecedorService,
     private cepService: CepService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private msgService: MessageService) {
+    private msgService: MessageService,
+    private route: ActivatedRoute) {
     this.fornecedor = new FornecedorModel();
     this.endereco = new EnderecoModel();
+    this.route.params.subscribe(params => this.idFornecedor = params['id']);
+
+    if (this.idFornecedor != undefined) {
+      this.titleScreen = "Editar Fornecedor";
+      this.txtButton = "Editar";
+      this.fornecedorService.getFornecedorById(this.idFornecedor).subscribe(
+        (fornecedor) => {
+          this.fornecedor = fornecedor;
+          this.endereco = fornecedor.endereco;
+        },
+        (error) => {
+          console.log("Error to get Fornecedor by Id:\n" + error);
+        }
+      );
+    } else {
+      this.titleScreen = "Novo Fornecedor";
+      this.txtButton = "Salvar";
+    }
   }
 
   ngOnInit(): void {

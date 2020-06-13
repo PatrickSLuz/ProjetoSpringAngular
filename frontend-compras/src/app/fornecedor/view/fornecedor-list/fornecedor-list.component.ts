@@ -7,6 +7,7 @@ import { FornecedorService } from '../../service/fornecedor.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEnderecoComponent } from '../dialog-endereco/dialog-endereco.component';
 import { EnderecoModel } from '../../model/endereco-model';
+import { DialogDeleteComponent } from '../dialog-delete/dialog-delete.component';
 
 @Component({
   selector: 'app-fornecedor-list',
@@ -18,7 +19,7 @@ export class FornecedorListComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<FornecedorModel>;
   dataSource: FornecedorListDataSource;
 
-  displayedColumns = ['idFornecedor', 'cpfCnpj', 'nomeRazao', 'rgInscricao', 'email', 'telefone', 'endereco'];
+  displayedColumns = ['idFornecedor', 'cpfCnpj', 'nomeRazao', 'rgInscricao', 'email', 'telefone', 'endereco', 'acoes'];
 
   constructor(private fornecedorService: FornecedorService,
     public dialog: MatDialog) {
@@ -39,6 +40,12 @@ export class FornecedorListComponent implements OnInit {
   dialogEndereco(endereco: EnderecoModel) {
     this.dialog.open(DialogEnderecoComponent, {
       data: { endereco: endereco },
+    }).afterClosed().subscribe();
+  }
+
+  deleteFornecedor(fornecedor: FornecedorModel) {
+    this.dialog.open(DialogDeleteComponent, {
+      data: { fornecedor: fornecedor },
     }).afterClosed().subscribe();
   }
 }

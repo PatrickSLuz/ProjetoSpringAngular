@@ -49,6 +49,7 @@ import { MatRadioModule } from '@angular/material/radio';
 // Registrar Localização
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { DialogDeleteComponent } from './fornecedor/view/dialog-delete/dialog-delete.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -70,6 +71,7 @@ registerLocaleData(localePt);
     DialogEnderecoComponent,
     DialogItensComponent,
     DialogSolicitanteComponent,
+    DialogDeleteComponent,
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'requisicao/create', component: RequisicaoCreateComponent, canActivate: [AuthGuardService] },
   { path: 'fornecedor/list', component: FornecedorListComponent, canActivate: [AuthGuardService] },
   { path: 'fornecedor/create', component: FornecedorCreateComponent, canActivate: [AuthGuardService] },
+  { path: 'fornecedor/update/:id', component: FornecedorCreateComponent, canActivate: [AuthGuardService] },
   { path: 'cotacao/list', component: CotacaoListComponent, canActivate: [AuthGuardService] },
   { path: 'cotacao/create', component: CotacaoCreateComponent, canActivate: [AuthGuardService] },
   { path: 'user/list', component: UserListComponent, canActivate: [AuthGuardService] },

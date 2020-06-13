@@ -1,0 +1,17 @@
+<mat-dialog-content style="width: 250px;" class="dialog">
+
+    <h3>Excluir Fornecedor</h3>
+
+    <section>
+        <span>Tem certeza que vai excluir o Fornecedor <b>{{fornecedor.nomeRazao}}</b>?</span>
+        <br>
+        <span>Id: <b>{{fornecedor.idFornecedor}}</b></span>
+    </section>
+
+    <br>
+    <div style="text-align: center;">
+        <button mat-raised-button style="margin-right: 25px;" (click)="hideDialog()">Não</button>
+        <button mat-raised-button color="warn" (click)="deleteFornecedor()">Sim</button>
+    </div>
+
+</mat-dialog-content>
