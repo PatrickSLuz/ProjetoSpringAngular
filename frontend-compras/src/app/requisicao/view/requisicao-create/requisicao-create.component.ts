@@ -23,7 +23,7 @@ export class RequisicaoCreateComponent implements OnInit {
   itens: RequisicaoItemModel[] = [];
   dataSource = new MatTableDataSource<any>();
 
-  displayedColumns = ['descricao', 'quantidade'];
+  displayedColumns = ['descricao', 'quantidade', 'remover'];
 
   constructor(private requisicaoService: RequisicaoService,
     private router: Router,
@@ -93,6 +93,21 @@ export class RequisicaoCreateComponent implements OnInit {
       this.item = new RequisicaoItemModel();
       this.dataSource.data = this.itens;
     }
+  }
+
+  updateQuantidade(index: number, isIncrement: boolean) {
+    if (isIncrement) {
+      this.itens[index].quantidade += 1;
+    } else {
+      if (this.itens[index].quantidade > 1) {
+        this.itens[index].quantidade -= 1;
+      }
+    }
+  }
+
+  removeItem(index: number) {
+    this.itens.splice(index, 1);
+    this.dataSource.data = this.itens;
   }
 
   cancel(): void {

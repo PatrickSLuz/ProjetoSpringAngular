@@ -5,11 +5,11 @@
     <div class="form-row">
         <mat-form-field>
             <input type="text" matInput [(ngModel)]="item.descricaoProduto" name="descricao"
-                placeholder="Descrição do Produto" formControlName="descricaoProduto" required>
+                placeholder="Descrição do Produto" formControlName="descricaoProduto">
         </mat-form-field>
         <mat-form-field class="field-qnt">
             <input type="number" min="1" max="1000" matInput [(ngModel)]="item.quantidade" name="quantidade"
-                placeholder="Quantidade" formControlName="quantidade" required>
+                placeholder="Quantidade" formControlName="quantidade">
         </mat-form-field>
     </div>
 
@@ -26,7 +26,25 @@
             <!-- Quantidade Column -->
             <ng-container matColumnDef="quantidade">
                 <th mat-header-cell *matHeaderCellDef>Quantidade</th>
-                <td mat-cell *matCellDef="let row">{{row.quantidade}}</td>
+                <td mat-cell *matCellDef="let row; let i = index">
+                    <button type="button" mat-button mat-icon-button (click)="updateQuantidade(i, false)">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                    {{row.quantidade}}
+                    <button type="button" mat-button mat-icon-button (click)="updateQuantidade(i, true)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <!-- Remover Column -->
+            <ng-container matColumnDef="remover">
+                <th mat-header-cell *matHeaderCellDef>Remover</th>
+                <td mat-cell *matCellDef="let row; let i = index">
+                    <button type="button" mat-button mat-icon-button (click)="removeItem(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
