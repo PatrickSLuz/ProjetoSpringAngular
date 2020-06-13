@@ -31,6 +31,16 @@ export class UserService {
     return this.http.get<UserModel[]>(this.url, { headers });
   }
 
+  getUserById(idUsuario: number): Observable<UserModel> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    let url = this.url + '/id=' + idUsuario;
+
+    return this.http.get<UserModel>(url, { headers });
+  }
+
   login(user: UserModel): Observable<UserModel> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'

@@ -65,6 +65,7 @@ export class RequisicaoCreateComponent implements OnInit {
         this.requisicao.itens = this.itens;
         this.requisicao.data = new Date;
         this.requisicao.status = StatusReq.CRIADO;
+        this.requisicao.cotacaoRealizada = false;
         this.requisicaoService.create(this.requisicao).subscribe(
           () => {
             this.msgService.showMessage("Requisição Realizada com Sucesso!!");

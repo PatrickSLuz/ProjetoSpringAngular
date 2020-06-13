@@ -62,17 +62,22 @@ public class UsuarioController {
 
 	@PostMapping
 	public ResponseEntity<Usuario> add(@RequestBody @Valid Usuario entity) {
-		logger.info("Save User");
-		Usuario userLogin = repository.getByLogin(entity.getLogin());
-		Usuario userEmail = repository.getByEmail(entity.getEmail());
-		if (userLogin == null && userEmail == null) {
+		if (entity.getIdUsuario() != null) {
+			logger.info("Edit User");
 			Usuario user = repository.save(entity);
 			return new ResponseEntity<>(user, HttpStatus.CREATED);
 		} else {
-			logger.info("Login ou E-mail ja existe");
-			return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+			logger.info("Save User");
+			Usuario userLogin = repository.getByLogin(entity.getLogin());
+			Usuario userEmail = repository.getByEmail(entity.getEmail());
+			if (userLogin == null && userEmail == null) {
+				Usuario user = repository.save(entity);
+				return new ResponseEntity<>(user, HttpStatus.CREATED);
+			} else {
+				logger.info("Login ou E-mail ja existe");
+				return new ResponseEntity<>(null, HttpStatus.CONFLICT);
+			}
 		}
-
 	}
 
 	@DeleteMapping

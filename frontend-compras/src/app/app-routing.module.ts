@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'cotacao/list', component: CotacaoListComponent, canActivate: [AuthGuardService] },
   { path: 'cotacao/create', component: CotacaoCreateComponent, canActivate: [AuthGuardService] },
   { path: 'user/list', component: UserListComponent, canActivate: [AuthGuardService] },
-  { path: 'user/create', component: UserCreateComponent }
+  { path: 'user/update/:id', component: UserCreateComponent, canActivate: [AuthGuardService] },
+  { path: 'user/create', component: UserCreateComponent },
 ];
 
 @NgModule({

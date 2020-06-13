@@ -15,7 +15,7 @@ export class UserListComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<UserModel>;
   dataSource: UserListDataSource;
 
-  displayedColumns = ['id', 'nome', 'setor'];
+  displayedColumns = ['id', 'nome', 'setor', 'editar'];
 
   constructor(private userService: UserService) {
   }
@@ -30,5 +30,14 @@ export class UserListComponent implements OnInit {
   configPaginator() {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+
+  validarCurrentUser(user: UserModel): boolean {
+    if (this.userService.currentUser) {
+      if (user.idUsuario == this.userService.currentUser.idUsuario) {
+        return true;
+      }
+    }
+    return false;
   }
 }
