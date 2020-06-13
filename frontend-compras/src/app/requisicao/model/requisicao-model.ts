@@ -12,9 +12,9 @@ export class RequisicaoModel {
 }
 
 export enum StatusReq {
-    CRIADO,
-    RECUSADO,
-    CANCELADO,
-    EM_COTACAO,
-    FINALIZADO
+    CRIADO = 'CRIADO',
+    RECUSADO = 'RECUSADO',
+    CANCELADO = 'CANCELADO',
+    EM_COTACAO = 'EM_COTACAO',
+    FINALIZADO = 'FINALIZADO'
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FornecedorService } from 'src/app/fornecedor/service/fornecedor.service';
 import { FornecedorModel } from 'src/app/fornecedor/model/fornecedor-model';
-import { RequisicaoModel } from 'src/app/requisicao/model/requisicao-model';
+import { RequisicaoModel, StatusReq } from 'src/app/requisicao/model/requisicao-model';
 import { RequisicaoService } from 'src/app/requisicao/service/requisicao.service';
 import { RequisicaoItemModel } from 'src/app/requisicao/model/requisicao-item-model';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -53,7 +53,7 @@ export class CotacaoCreateComponent implements OnInit {
   }
 
   getRequisicoes() {
-    this.requisicaoService.getAllRequisicoes().subscribe(
+    this.requisicaoService.getAllRequisicoesByStatus(StatusReq.CRIADO).subscribe(
       (requisicoes) => {
         this.dataSourceRequisicao.data = requisicoes;
         this.dataSourceRequisicao.paginator = this.paginatorRequisicao;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RequisicaoModel } from '../model/requisicao-model';
+import { RequisicaoModel, StatusReq } from '../model/requisicao-model';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/auth/service/authentication.service';
 
@@ -31,6 +31,17 @@ export class RequisicaoService {
     });
 
     return this.http.get<RequisicaoModel[]>(this.url, { headers });
+  }
+
+  getAllRequisicoesByStatus(status: StatusReq): Observable<RequisicaoModel[]> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.authService.token
+    });
+
+    let url = this.url + '/status=' + status;
+
+    return this.http.get<RequisicaoModel[]>(url, { headers });
   }
 
   updateByStatus(requisicao: RequisicaoModel): Observable<RequisicaoModel> {
