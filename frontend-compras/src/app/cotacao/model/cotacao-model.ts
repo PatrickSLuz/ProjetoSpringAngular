@@ -1,2 +1,2 @@
-export interface Cotacao {
+export class CotacaoModel {
 }

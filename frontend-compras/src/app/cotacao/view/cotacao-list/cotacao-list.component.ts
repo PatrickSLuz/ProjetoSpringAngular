@@ -1,30 +1,30 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { CotacaoListDataSource, CotacaoListItem } from './cotacao-list-datasource';
+import { CotacaoService } from '../../service/cotacao.service';
 
 @Component({
   selector: 'app-cotacao-list',
   templateUrl: './cotacao-list.component.html',
   styleUrls: ['./cotacao-list.component.css']
 })
-export class CotacaoListComponent implements AfterViewInit, OnInit {
+export class CotacaoListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<CotacaoListItem>;
   dataSource: CotacaoListDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
 
-  ngOnInit() {
-    this.dataSource = new CotacaoListDataSource();
-  }
+  constructor(private cotacaoService: CotacaoService) { }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  ngOnInit() {
+    this.cotacaoService.getAllCotacoes().subscribe(
+      cotacoes => {
+        this.dataSource = new CotacaoListDataSource(cotacoes);
+        this.dataSource.paginator = this.paginator;
+        this.table.dataSource = this.dataSource;
+      }, error => console.log(error)
+    );
   }
 }
