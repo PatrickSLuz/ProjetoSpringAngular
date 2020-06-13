@@ -72,11 +72,9 @@ public class RequisicaoController {
 	@Transactional
 	@PostMapping("/status")
 	public Requisicao updateByStatus(@RequestBody @Valid Requisicao entity) {
-		logger.info("Update Requisicao By Statuss");
-		Requisicao requisicao = repository.getOne(entity.getIdRequisicao());
-		requisicao.setStatus(entity.getStatus());
-		repository.save(requisicao);
-		return requisicao;
+		logger.info("Update Status Requisicao");
+		repository.updateStatus(entity.getStatus(), entity.getIdRequisicao());
+		return entity;
 	}
 
 	@DeleteMapping

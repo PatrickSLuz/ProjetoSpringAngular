@@ -2,7 +2,6 @@ package br.edu.up.compras.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,11 +13,11 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 @Entity
-@Table(name="cotacao")
+@Table(name = "cotacao")
 public class Cotacao implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -28,13 +27,13 @@ public class Cotacao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cotacao")
 	private Integer idCotacao;
-	
-	@OneToOne(cascade = CascadeType.ALL)
+
+	@OneToOne()
 	private Fornecedor fornecedor;
-	
-	@OneToOne(cascade = CascadeType.ALL)
+
+	@OneToOne()
 	private Requisicao requisicao;
-	
+
 	@NotNull(message = "field.required")
 	@Column(name = "vlr_total", nullable = false, precision = 2, scale = 10)
 	private double vlrTotal;
@@ -70,5 +69,5 @@ public class Cotacao implements Serializable {
 	public void setVlrTotal(double vlrTotal) {
 		this.vlrTotal = vlrTotal;
 	}
-	
+
 }
