@@ -29,6 +29,9 @@ import { LoginComponent } from './auth/view/login/login.component';
 import { DialogEnderecoComponent } from './fornecedor/view/dialog-endereco/dialog-endereco.component';
 import { DialogItensComponent } from './requisicao/view/dialog-itens/dialog-itens.component';
 import { DialogSolicitanteComponent } from './requisicao/view/dialog-solicitante/dialog-solicitante.component';
+import { DialogDeleteComponent } from './fornecedor/view/dialog-delete/dialog-delete.component';
+import { DialogRequisicaoComponent } from './cotacao/view/dialog-requisicao/dialog-requisicao.component';
+import { DialogItensCotadosComponent } from './cotacao/view/dialog-itens-cotados/dialog-itens-cotados.component';
 
 // Material Design
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -49,7 +52,6 @@ import { MatRadioModule } from '@angular/material/radio';
 // Registrar Localização
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { DialogDeleteComponent } from './fornecedor/view/dialog-delete/dialog-delete.component';
 registerLocaleData(localePt);
 
 @NgModule({
@@ -72,6 +74,8 @@ registerLocaleData(localePt);
     DialogItensComponent,
     DialogSolicitanteComponent,
     DialogDeleteComponent,
+    DialogRequisicaoComponent,
+    DialogItensCotadosComponent
   ],
   imports: [
     BrowserModule,

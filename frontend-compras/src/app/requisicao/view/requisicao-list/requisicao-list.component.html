@@ -14,8 +14,9 @@
     <ng-container matColumnDef="solicitante">
       <th mat-header-cell *matHeaderCellDef>Solicitante</th>
       <td mat-cell *matCellDef="let row">
-        <i (click)="openDialogSolicitante(row.solicitante)" style="cursor: pointer;"
-          class="material-icons">account_circle</i>
+        <button mat-mini-fab color="basic" (click)="openDialogSolicitante(row.solicitante)">
+          <mat-icon>account_circle</mat-icon>
+        </button>
       </td>
     </ng-container>
 
@@ -23,7 +24,9 @@
     <ng-container matColumnDef="itens">
       <th mat-header-cell *matHeaderCellDef>Itens</th>
       <td mat-cell *matCellDef="let row">
-        <i (click)="openDialogItens(row.itens)" style="cursor: pointer;" class="material-icons">assignment</i>
+        <button mat-mini-fab color="basic" (click)="openDialogItens(row.itens)">
+          <mat-icon>assignment</mat-icon>
+        </button>
       </td>
     </ng-container>
 
@@ -43,9 +46,19 @@
     <ng-container matColumnDef="cancelar">
       <th mat-header-cell *matHeaderCellDef>Cancelar</th>
       <td mat-cell *matCellDef="let row">
-        <button *ngIf="validarCurrentUser(row.solicitante)" mat-raised-button color="warn"
-          (click)="cancelRequisicao(row)">
+        <button *ngIf="validarSePodeCancelar(row)" mat-raised-button color="warn" (click)="cancelRequisicao(row)">
           Cancelar
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Finalizar Column -->
+    <ng-container matColumnDef="finalizar">
+      <th mat-header-cell *matHeaderCellDef>Finalizar</th>
+      <td mat-cell *matCellDef="let row">
+        <button *ngIf="validarSePodeFinalizar(row)" mat-raised-button color="primary"
+          (click)="finalizarRequisicao(row)">
+          Finalizar
         </button>
       </td>
     </ng-container>

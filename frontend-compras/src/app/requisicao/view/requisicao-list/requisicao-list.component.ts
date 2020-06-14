@@ -21,7 +21,7 @@ export class RequisicaoListComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<RequisicaoModel>;
   dataSource: RequisicaoListDataSource;
 
-  displayedColumns = ['idRequisicao', 'solicitante', 'itens', 'observacao', 'status', 'cancelar'];
+  displayedColumns = ['idRequisicao', 'solicitante', 'itens', 'observacao', 'status', 'cancelar', 'finalizar'];
 
   constructor(private requisicaoService: RequisicaoService,
     private userService: UserService,
@@ -37,10 +37,23 @@ export class RequisicaoListComponent implements OnInit {
     );
   }
 
-  validarCurrentUser(user: UserModel): boolean {
+  validarSePodeCancelar(requisicao: RequisicaoModel): boolean {
     if (this.userService.currentUser) {
-      if (user.idUsuario == this.userService.currentUser.idUsuario) {
-        return true;
+      if (requisicao.solicitante.idUsuario == this.userService.currentUser.idUsuario) {
+        if (requisicao.status == StatusReq.CRIADO) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  validarSePodeFinalizar(requisicao: RequisicaoModel): boolean {
+    if (this.userService.currentUser) {
+      if (requisicao.solicitante.idUsuario == this.userService.currentUser.idUsuario) {
+        if (requisicao.status == StatusReq.EM_COTACAO) {
+          return true;
+        }
       }
     }
     return false;
@@ -48,6 +61,16 @@ export class RequisicaoListComponent implements OnInit {
 
   cancelRequisicao(requisicao: RequisicaoModel): void {
     requisicao.status = StatusReq.CANCELADO;
+    this.requisicaoService.updateByStatus(requisicao).subscribe(
+      () => this.ngOnInit(),
+      (error) => {
+        console.log("Error to update Requisicao:\n" + error)
+      }
+    );
+  }
+
+  finalizarRequisicao(requisicao: RequisicaoModel): void {
+    requisicao.status = StatusReq.FINALIZADO;
     this.requisicaoService.updateByStatus(requisicao).subscribe(
       () => this.ngOnInit(),
       (error) => {

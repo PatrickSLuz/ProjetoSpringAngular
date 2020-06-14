@@ -26,8 +26,7 @@
     <ng-container matColumnDef="editar">
       <th mat-header-cell *matHeaderCellDef>Editar</th>
       <td mat-cell *matCellDef="let row">
-        <button *ngIf="validarCurrentUser(row)" mat-button color="accent" mat-icon-button
-          routerLink="/user/update/{{row.idUsuario}}">
+        <button *ngIf="validarCurrentUser(row)" mat-mini-fab color="accent" routerLink="/user/update/{{row.idUsuario}}">
           <mat-icon>edit</mat-icon>
         </button>
       </td>

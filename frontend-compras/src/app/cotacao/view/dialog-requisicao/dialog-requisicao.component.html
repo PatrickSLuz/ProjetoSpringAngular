@@ -1,16 +1,16 @@
 <mat-dialog-content style="width: 250px;" class="dialog">
 
-    <h3>Solicitante</h3>
+    <h3>Requisição</h3>
 
     <section>
-        <span>Nome: </span>
-        <label>{{user.nome}}</label>
+        <span>#id: </span>
+        <label>{{requisicao.idRequisicao}}</label>
         <br>
-        <span>Setor: </span>
-        <label>{{user.setor}}</label>
+        <span>Solicitante: </span>
+        <label>{{requisicao.solicitante.nome}}</label>
         <br>
-        <span>email: </span>
-        <label>{{user.email}}</label>
+        <span>Observação: </span>
+        <label>{{requisicao.observacao}}</label>
         <br>
     </section>
 

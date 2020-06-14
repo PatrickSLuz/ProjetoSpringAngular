@@ -73,7 +73,7 @@ public class RequisicaoController {
 	@PostMapping("/status")
 	public Requisicao updateByStatus(@RequestBody @Valid Requisicao entity) {
 		logger.info("Update Status Requisicao");
-		repository.updateStatus(entity.getStatus(), entity.getIdRequisicao());
+		repository.updateStatus(entity.getStatus().toString(), entity.getIdRequisicao());
 		return entity;
 	}
 
