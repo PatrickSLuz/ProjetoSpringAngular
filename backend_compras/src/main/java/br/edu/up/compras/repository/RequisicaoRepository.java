@@ -12,6 +12,9 @@ public interface RequisicaoRepository extends JpaRepository<Requisicao, Integer>
 	@Query(value = "SELECT * FROM requisicao WHERE status = ?", nativeQuery = true)
 	Iterable<Requisicao> getAllByStatus(String status);
 
+	@Query(value = "SELECT * FROM requisicao WHERE solicitante_id_usuario = ?", nativeQuery = true)
+	Iterable<Requisicao> getAllByUser(Integer idUsuario);
+
 	@Modifying
 	@Query(value = "UPDATE requisicao SET cotacao_realizada = :realizada WHERE id_requisicao = :idRequisicao", nativeQuery = true)
 	void updateCotacao(@Param(value = "realizada") boolean realizada,
@@ -19,7 +22,6 @@ public interface RequisicaoRepository extends JpaRepository<Requisicao, Integer>
 
 	@Modifying
 	@Query(value = "UPDATE requisicao SET status = :status WHERE id_requisicao = :idRequisicao", nativeQuery = true)
-	void updateStatus(@Param(value = "status") String status,
-			@Param(value = "idRequisicao") Integer idRequisicao);
+	void updateStatus(@Param(value = "status") String status, @Param(value = "idRequisicao") Integer idRequisicao);
 
 }

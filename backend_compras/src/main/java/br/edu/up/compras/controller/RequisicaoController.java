@@ -52,6 +52,13 @@ public class RequisicaoController {
 		return list;
 	}
 
+	@GetMapping("/usuario/{idUsuario}")
+	public @ResponseBody Iterable<Requisicao> listAllByUser(@PathVariable Integer idUsuario) {
+		logger.info("List all Requisicoes by User");
+		Iterable<Requisicao> list = repository.getAllByUser(idUsuario);
+		return list;
+	}
+
 	@Transactional
 	@PostMapping
 	public Requisicao add(@RequestBody @Valid Requisicao entity) {

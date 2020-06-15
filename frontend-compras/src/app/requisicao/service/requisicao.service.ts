@@ -44,6 +44,17 @@ export class RequisicaoService {
     return this.http.get<RequisicaoModel[]>(url, { headers });
   }
 
+  getAllRequisicoesByUser(idUsuario: number): Observable<RequisicaoModel[]> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.authService.token
+    });
+
+    let url = this.url + '/usuario/' + idUsuario;
+
+    return this.http.get<RequisicaoModel[]>(url, { headers });
+  }
+
   updateByStatus(requisicao: RequisicaoModel): Observable<RequisicaoModel> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
