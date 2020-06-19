@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { RequisicaoModel, StatusReq } from '../model/requisicao-model';
+import { RequisicaoModel } from '../model/requisicao-model';
+import { StatusReq } from '../model/status-requisicao';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from 'src/app/auth/service/authentication.service';
 

@@ -1,5 +1,6 @@
 import { UserModel } from 'src/app/user/model/user-model';
 import { RequisicaoItemModel } from './requisicao-item-model';
+import { StatusReq } from './status-requisicao';
 
 export class RequisicaoModel {
     idRequisicao: number
@@ -9,12 +10,4 @@ export class RequisicaoModel {
     status: StatusReq
     observacao: string
     cotacaoRealizada: boolean
-}
-
-export enum StatusReq {
-    CRIADO = 'CRIADO',
-    RECUSADO = 'RECUSADO',
-    CANCELADO = 'CANCELADO',
-    EM_COTACAO = 'EM_COTACAO',
-    FINALIZADO = 'FINALIZADO'
 }

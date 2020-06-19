@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RequisicaoItemModel } from '../../model/requisicao-item-model';
-import { RequisicaoModel, StatusReq } from '../../model/requisicao-model';
+import { RequisicaoModel } from '../../model/requisicao-model';
+import { StatusReq } from '../../model/status-requisicao';
 import { RequisicaoService } from '../../service/requisicao.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
