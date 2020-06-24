@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:4200/backend'
+  //baseUrl: 'http://springcompras-env.eba-kzzwwcwt.sa-east-1.elasticbeanstalk.com'
+  baseUrl: 'http://localhost:8080'
 };
 
 /*

@@ -6,8 +6,6 @@ import { RequisicaoItemModel } from 'src/app/requisicao/model/requisicao-item-mo
 export class CotacaoBuilder {
     cotacao: CotacaoModel
 
-    static fornecedor: FornecedorModel;
-
     constructor() {
         this.cotacao = new CotacaoModel();
     }
